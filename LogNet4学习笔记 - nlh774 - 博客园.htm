@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>LogNet4学习笔记 - nlh774 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="/bundles/blog-common.css?v=gdNkSiQMyBMkpTeO1ex9qW-60UbMszQItnCUpBAT3LQ1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="http://common.cnblogs.com/Skins/SimpleClear/style.css?id=20140415"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/nlh774/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/nlh774/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/nlh774/wlwmanifest.xml"/>
+<script src="http://common.cnblogs.com/script/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'nlh774', cb_enable_mathjax=false;</script>
+<script src="/bundles/blog-common.js?v=15gzXd7pJ_PNpSlGpVykf0EBaNg79HWL7oD5vVw0NGA1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<div id="main">
+<div id="header">
+<h1><a id="Header1_HeaderTitle" href="http://www.cnblogs.com/nlh774/">nlh774</a></h1>
+<p id="tagline"></p></div>
+
+
+<div class="post">
+    <h2 class="postTitle"><a id="cb_post_title_url" href="http://www.cnblogs.com/nlh774/p/3623393.html">LogNet4学习笔记</a></h2>
+    <div class="postText"><div id="cnblogs_post_body"><p>LogNet是一套开源的程序日志记录系统，经过配置后可以自动抓取程序中的错误、异常信息，并写入磁盘，也可以在异常发生时执行其他指定的操作，比如：通知某人右键、写入数据库等。</p>
+<p>这里写个AspNet应用LogNet的Demo:</p>
+<p>1.建立AspNet网站，在web.config中写LogNet的配置文件：</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show('f38b4a92-f0fe-4936-9a01-a8c80ca1cfed')"><img id="code_img_closed_f38b4a92-f0fe-4936-9a01-a8c80ca1cfed" class="code_img_closed" src="http://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt="" /><img id="code_img_opened_f38b4a92-f0fe-4936-9a01-a8c80ca1cfed" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide('f38b4a92-f0fe-4936-9a01-a8c80ca1cfed',event)" src="http://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="" />
+<div id="cnblogs_code_open_f38b4a92-f0fe-4936-9a01-a8c80ca1cfed" class="cnblogs_code_hide">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">&lt;?</span><span style="color: #ff00ff;">xml version="1.0"</span><span style="color: #0000ff;">?&gt;</span>
+<span style="color: #008080;"> 2</span> <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">configuration</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 3</span>     <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">configSections</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 4</span>         <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">section </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="log4net"</span><span style="color: #ff0000;"> type</span><span style="color: #0000ff;">="log4net.Config.Log4NetConfigurationSectionHandler,log4net"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #008080;"> 5</span>     <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">configSections</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 6</span>   
+<span style="color: #008080;"> 7</span>     <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">log4net</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;"> 8</span>         <span style="color: #008000;">&lt;!--</span><span style="color: #008000;">错误日志配置</span><span style="color: #008000;">--&gt;</span>
+<span style="color: #008080;"> 9</span>         <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">appender </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="ErrorAppender"</span><span style="color: #ff0000;"> type</span><span style="color: #0000ff;">="log4net.Appender.RollingFileAppender"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">10</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">param </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="File"</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">="Log\\LogError\\"</span><span style="color: #0000ff;">/&gt;</span>    <span style="color: #008000;">&lt;!--</span><span style="color: #008000;">文件路径</span><span style="color: #008000;">--&gt;</span>
+<span style="color: #008080;">11</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">param </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="AppendToFile"</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">="true"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #008080;">12</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">param </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="MaxSizeRollBackups"</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">="100"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #008080;">13</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">param </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="MaxFileSize"</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">="10240"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #008080;">14</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">param </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="StaticLogFileName"</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">="false"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #008080;">15</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">param </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="DatePattern"</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">="yyyyMMdd"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #008080;">16</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">param </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="RollingStyle"</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">="Date"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #008080;">17</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">layout </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="log4net.Layout.PatternLayout"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">18</span>                 <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">param </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="ConversionPattern"</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">="%n异常时间：%d [%t] %n异常级别：%-5p %n异 常 类：%c [%x] %n%m %n "</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #008080;">19</span>             <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">layout</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">20</span>         <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">appender</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">21</span>         <span style="color: #008000;">&lt;!--</span><span style="color: #008000;">信息日志配置</span><span style="color: #008000;">--&gt;</span>
+<span style="color: #008080;">22</span>         <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">appender </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="InfoAppender"</span><span style="color: #ff0000;"> type</span><span style="color: #0000ff;">="log4net.Appender.RollingFileAppender"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">23</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">param </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="File"</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">="Log\\LogInfo\\"</span><span style="color: #0000ff;">/&gt;</span>     <span style="color: #008000;">&lt;!--</span><span style="color: #008000;">文件路径</span><span style="color: #008000;">--&gt;</span>
+<span style="color: #008080;">24</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">param </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="AppendToFile"</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">="true"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #008080;">25</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">param </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="MaxFileSize"</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">="10240"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #008080;">26</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">param </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="MaxSizeRollBackups"</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">="100"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #008080;">27</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">param </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="StaticLogFileName"</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">="false"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #008080;">28</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">param </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="DatePattern"</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">="yyyyMMdd"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #008080;">29</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">param </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="RollingStyle"</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">="Date"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #008080;">30</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">layout </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="log4net.Layout.PatternLayout"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">31</span>                 <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">param </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="ConversionPattern"</span><span style="color: #ff0000;"> value</span><span style="color: #0000ff;">="%n日志时间：%d [%t] %n日志级别：%-5p %n日 志 类：%c [%x] %n%m %n"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #008080;">32</span>             <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">layout</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">33</span>         <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">appender</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">34</span>         <span style="color: #008000;">&lt;!--</span><span style="color: #008000;">控制台</span><span style="color: #008000;">--&gt;</span>
+<span style="color: #008080;">35</span>         <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">appender </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="ConsoleAppender"</span><span style="color: #ff0000;"> type</span><span style="color: #0000ff;">="log4net.Appender.ConsoleAppender"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">36</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">layout </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="log4net.Layout.PatternLayout"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">37</span>                 <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">conversionPattern </span><span style="color: #ff0000;">value</span><span style="color: #0000ff;">="%5level [%thread] (%file:%line) - %message%newline"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #008080;">38</span>             <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">layout</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">39</span>         <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">appender</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">40</span>         <span style="color: #008000;">&lt;!--</span><span style="color: #008000;">log4net.LogManager.GetLogger("logerror")用这个来选择这种类型</span><span style="color: #008000;">--&gt;</span>
+<span style="color: #008080;">41</span>         <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">logger </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="logerror"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">42</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">level </span><span style="color: #ff0000;">value</span><span style="color: #0000ff;">="ERROR"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #008080;">43</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">appender-ref </span><span style="color: #ff0000;">ref</span><span style="color: #0000ff;">="ErrorAppender"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #008080;">44</span>         <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">logger</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">45</span>     <span style="color: #008000;">&lt;!--</span><span style="color: #008000;">log4net.LogManager.GetLogger("loginfo")用这个来选择这种类型</span><span style="color: #008000;">--&gt;</span>
+<span style="color: #008080;">46</span>         <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">logger </span><span style="color: #ff0000;">name</span><span style="color: #0000ff;">="loginfo"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">47</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">level </span><span style="color: #ff0000;">value</span><span style="color: #0000ff;">="INFO"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #008080;">48</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">appender-ref </span><span style="color: #ff0000;">ref</span><span style="color: #0000ff;">="InfoAppender"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #008080;">49</span>         <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">logger</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">50</span>         <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">root</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">51</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">level </span><span style="color: #ff0000;">value</span><span style="color: #0000ff;">="INFO"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #008080;">52</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">appender-ref </span><span style="color: #ff0000;">ref</span><span style="color: #0000ff;">="InfoAppender"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #008080;">53</span>             <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">appender-ref </span><span style="color: #ff0000;">ref</span><span style="color: #0000ff;">="ConsoleAppender"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #008080;">54</span>         <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">root</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">55</span>     <span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">log4net</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">56</span>     <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">system.web</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008080;">57</span>         <span style="color: #0000ff;">&lt;</span><span style="color: #800000;">compilation </span><span style="color: #ff0000;">debug</span><span style="color: #0000ff;">="true"</span><span style="color: #0000ff;">/&gt;&lt;/</span><span style="color: #800000;">system.web</span><span style="color: #0000ff;">&gt;&lt;/</span><span style="color: #800000;">configuration</span><span style="color: #0000ff;">&gt;</span></pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>2.建立日志记录Log类库，实现方法</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show('5be4cef6-dc26-4f40-8bc8-1b5f41639a41')"><img id="code_img_closed_5be4cef6-dc26-4f40-8bc8-1b5f41639a41" class="code_img_closed" src="http://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt="" /><img id="code_img_opened_5be4cef6-dc26-4f40-8bc8-1b5f41639a41" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide('5be4cef6-dc26-4f40-8bc8-1b5f41639a41',event)" src="http://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="" />
+<div id="cnblogs_code_open_5be4cef6-dc26-4f40-8bc8-1b5f41639a41" class="cnblogs_code_hide">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>   
+<span style="color: #008080;"> 2</span>     <span style="color: #808080;">///</span><span style="color: #008000;"> LogHelper的摘要说明。   
+</span><span style="color: #008080;"> 3</span>     <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>   
+<span style="color: #008080;"> 4</span>     <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> LogHelper
+</span><span style="color: #008080;"> 5</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 6</span>         <span style="color: #0000ff;">private</span><span style="color: #000000;"> LogHelper()
+</span><span style="color: #008080;"> 7</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;"> 8</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;"> 9</span> 
+<span style="color: #008080;">10</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">readonly</span> log4net.ILog loginfo = log4net.LogManager.GetLogger(<span style="color: #800000;">"</span><span style="color: #800000;">loginfo</span><span style="color: #800000;">"</span>);   <span style="color: #008000;">//</span><span style="color: #008000;">选择&lt;logger name="loginfo"&gt;的配置 </span>
+<span style="color: #008080;">11</span> 
+<span style="color: #008080;">12</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">readonly</span> log4net.ILog logerror = log4net.LogManager.GetLogger(<span style="color: #800000;">"</span><span style="color: #800000;">logerror</span><span style="color: #800000;">"</span>);   <span style="color: #008000;">//</span><span style="color: #008000;">选择&lt;logger name="logerror"&gt;的配置 </span>
+<span style="color: #008080;">13</span> 
+<span style="color: #008080;">14</span> 
+<span style="color: #008080;">15</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+<span style="color: #008080;">16</span>         <span style="color: #808080;">///</span><span style="color: #008000;"> 默认配置。按配置文件
+</span><span style="color: #008080;">17</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+<span style="color: #008080;">18</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> SetConfig()
+</span><span style="color: #008080;">19</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;">20</span> <span style="color: #000000;">            log4net.Config.XmlConfigurator.Configure();
+</span><span style="color: #008080;">21</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">22</span> 
+<span style="color: #008080;">23</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+<span style="color: #008080;">24</span>         <span style="color: #808080;">///</span><span style="color: #008000;"> 手动设置,作用未知
+</span><span style="color: #008080;">25</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+<span style="color: #008080;">26</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="configFile"&gt;&lt;/param&gt;</span>
+<span style="color: #008080;">27</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> SetConfig(FileInfo configFile)
+</span><span style="color: #008080;">28</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;">29</span> <span style="color: #000000;">            log4net.Config.XmlConfigurator.Configure(configFile);
+</span><span style="color: #008080;">30</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">31</span> 
+<span style="color: #008080;">32</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+<span style="color: #008080;">33</span>         <span style="color: #808080;">///</span><span style="color: #008000;"> 写信息。
+</span><span style="color: #008080;">34</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+<span style="color: #008080;">35</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="info"&gt;&lt;/param&gt;</span>
+<span style="color: #008080;">36</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span> WriteLog(<span style="color: #0000ff;">string</span><span style="color: #000000;"> info)
+</span><span style="color: #008080;">37</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;">38</span>             <span style="color: #0000ff;">if</span><span style="color: #000000;"> (loginfo.IsInfoEnabled)
+</span><span style="color: #008080;">39</span> <span style="color: #000000;">            {
+</span><span style="color: #008080;">40</span> <span style="color: #000000;">                loginfo.Info(info);
+</span><span style="color: #008080;">41</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">42</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">43</span> 
+<span style="color: #008080;">44</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+<span style="color: #008080;">45</span>         <span style="color: #808080;">///</span><span style="color: #008000;"> 写日志。出错时会写入
+</span><span style="color: #008080;">46</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+<span style="color: #008080;">47</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="info"&gt;&lt;/param&gt;</span>
+<span style="color: #008080;">48</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="se"&gt;&lt;/param&gt;</span>
+<span style="color: #008080;">49</span>         <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span> WriteLog(<span style="color: #0000ff;">string</span><span style="color: #000000;"> info, Exception se)
+</span><span style="color: #008080;">50</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;">51</span>             <span style="color: #0000ff;">if</span><span style="color: #000000;"> (logerror.IsErrorEnabled)
+</span><span style="color: #008080;">52</span> <span style="color: #000000;">            {
+</span><span style="color: #008080;">53</span> <span style="color: #000000;">                logerror.Error(info, se);
+</span><span style="color: #008080;">54</span> <span style="color: #000000;">            }
+</span><span style="color: #008080;">55</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">56</span>     }</pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>3.在网站的Global.asax中配置网站与LogNet的联系。</p>
+<div class="cnblogs_code" onclick="cnblogs_code_show('f1987b35-1b63-4398-8823-d05d158b85d7')"><img id="code_img_closed_f1987b35-1b63-4398-8823-d05d158b85d7" class="code_img_closed" src="http://images.cnblogs.com/OutliningIndicators/ContractedBlock.gif" alt="" /><img id="code_img_opened_f1987b35-1b63-4398-8823-d05d158b85d7" class="code_img_opened" style="display: none;" onclick="cnblogs_code_hide('f1987b35-1b63-4398-8823-d05d158b85d7',event)" src="http://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="" />
+<div id="cnblogs_code_open_f1987b35-1b63-4398-8823-d05d158b85d7" class="cnblogs_code_hide">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Global : System.Web.HttpApplication
+</span><span style="color: #008080;"> 2</span> <span style="color: #000000;">    {
+</span><span style="color: #008080;"> 3</span>         <span style="color: #0000ff;">void</span> Application_End(<span style="color: #0000ff;">object</span><span style="color: #000000;"> sender, EventArgs e)
+</span><span style="color: #008080;"> 4</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;"> 5</span>             <span style="color: #008000;">//</span><span style="color: #008000;">  在应用程序关闭时运行的代码</span>
+<span style="color: #008080;"> 6</span> 
+<span style="color: #008080;"> 7</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;"> 8</span> 
+<span style="color: #008080;"> 9</span>         <span style="color: #0000ff;">void</span> Session_Start(<span style="color: #0000ff;">object</span><span style="color: #000000;"> sender, EventArgs e)
+</span><span style="color: #008080;">10</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;">11</span>             <span style="color: #008000;">//</span><span style="color: #008000;"> 在新会话启动时运行的代码</span>
+<span style="color: #008080;">12</span> 
+<span style="color: #008080;">13</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">14</span> 
+<span style="color: #008080;">15</span>         <span style="color: #0000ff;">void</span> Session_End(<span style="color: #0000ff;">object</span><span style="color: #000000;"> sender, EventArgs e)
+</span><span style="color: #008080;">16</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;">17</span>             <span style="color: #008000;">//</span><span style="color: #008000;"> 在会话结束时运行的代码。 
+</span><span style="color: #008080;">18</span>             <span style="color: #008000;">//</span><span style="color: #008000;"> 注意: 只有在 Web.config 文件中的 sessionstate 模式设置为
+</span><span style="color: #008080;">19</span>             <span style="color: #008000;">//</span><span style="color: #008000;"> InProc 时，才会引发 Session_End 事件。如果会话模式设置为 StateServer 
+</span><span style="color: #008080;">20</span>             <span style="color: #008000;">//</span><span style="color: #008000;"> 或 SQLServer，则不会引发该事件。</span>
+<span style="color: #008080;">21</span> 
+<span style="color: #008080;">22</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">23</span> 
+<span style="color: #008080;">24</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+<span style="color: #008080;">25</span>         <span style="color: #808080;">///</span><span style="color: #008000;"> 程序启动时配置lognet
+</span><span style="color: #008080;">26</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+<span style="color: #008080;">27</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="sender"&gt;&lt;/param&gt;</span>
+<span style="color: #008080;">28</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="e"&gt;&lt;/param&gt;</span>
+<span style="color: #008080;">29</span>         <span style="color: #0000ff;">protected</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> Application_Start(Object sender, EventArgs e)
+</span><span style="color: #008080;">30</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;">31</span>             <span style="color: #008000;">//</span><span style="color: #008000;">若不想把lognet配置文件写在web.config中，也可以另外手动指定。
+</span><span style="color: #008080;">32</span>             <span style="color: #008000;">//</span><span style="color: #008000;">XmlConfigurator.Configure(new FileInfo(HttpContext.Current.Server.MapPath("~/App_Data/log4net.config")));</span>
+<span style="color: #008080;">33</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">34</span> 
+<span style="color: #008080;">35</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;summary&gt;</span>
+<span style="color: #008080;">36</span>         <span style="color: #808080;">///</span><span style="color: #008000;"> 程序出错时通过lognet写日志
+</span><span style="color: #008080;">37</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;/summary&gt;</span>
+<span style="color: #008080;">38</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="sender"&gt;&lt;/param&gt;</span>
+<span style="color: #008080;">39</span>         <span style="color: #808080;">///</span> <span style="color: #808080;">&lt;param name="e"&gt;&lt;/param&gt;</span>
+<span style="color: #008080;">40</span>         <span style="color: #0000ff;">protected</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> Application_Error(Object sender, EventArgs e)
+</span><span style="color: #008080;">41</span> <span style="color: #000000;">        {
+</span><span style="color: #008080;">42</span>             Exception objExp =<span style="color: #000000;"> HttpContext.Current.Server.GetLastError();
+</span><span style="color: #008080;">43</span>             LogHelper.WriteLog(<span style="color: #800000;">"</span><span style="color: #800000;">\r\n客户机IP:</span><span style="color: #800000;">"</span> +<span style="color: #000000;"> Request.UserHostAddress 
+</span><span style="color: #008080;">44</span>                 + <span style="color: #800000;">"</span><span style="color: #800000;">\r\n错误地址:</span><span style="color: #800000;">"</span> +<span style="color: #000000;"> Request.Url 
+</span><span style="color: #008080;">45</span>                 + <span style="color: #800000;">"</span><span style="color: #800000;">\r\n异常信息:</span><span style="color: #800000;">"</span> +<span style="color: #000000;"> Server.GetLastError().Message, objExp);
+</span><span style="color: #008080;">46</span> <span style="color: #000000;">        }
+</span><span style="color: #008080;">47</span>     }</pre>
+</div>
+<span class="cnblogs_code_collapse">View Code</span></div>
+<p>&nbsp;</p>
+<p>这样，当网站出错时，就会自动在网站目录的Log\LogError与LogInfo下写如文本日志。</p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+</div>
+    <p class="postfoot">posted on <span id="post-date">2014-03-25 16:13</span> <a href='http://www.cnblogs.com/nlh774/'>nlh774</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="http://i.cnblogs.com/EditPosts.aspx?postid=3623393" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(3623393);return false;">收藏</a></p>
+</div>
+<script type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=169145,cb_entryId=3623393,cb_blogApp=currentBlogApp,cb_blogUserGuid='01e45af5-fcc5-e211-8d02-90b11c0b17d6',cb_entryCreatedDate='2014/3/25 16:13:00';loadViewCount(cb_entryId);</script>
+
+<a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.cnblogs.com/" target="_blank" title="程序员的网上家园">博客园首页</a><a href="http://q.cnblogs.com/" target="_blank" title="程序员问答社区">博问</a><a href="http://news.cnblogs.com/" target="_blank" title="IT新闻">新闻</a><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a><a href="http://job.cnblogs.com/" target="_blank">程序员招聘</a><a href="http://kb.cnblogs.com/" target="_blank">知识库</a></div>
+<div id="ad_under_post_holder"></div>
+<script type="text/javascript">
+var enableGoogleAd = true;
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+fixPostBodyFormat();
+loadAdUnderPost();
+</script>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+loadBlogSignature();
+LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+</script>
+<script type="text/javascript">
+    $.ajax({ url: 'http://counter.cnblogs.com/blog/post/' + cb_entryId, type: 'get', dataType: 'script', cache: true });
+</script>
+</div>
+
+</div>
+<div id="rightmenu">
+	
+		
+<div id="my_links">
+<h3>导航</h3>
+<ul>
+<li><a id="MyLinks1_HomeLink" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="MyLinks1_MyHomeLink" href="http://www.cnblogs.com/nlh774/">首页</a></li>
+<!--<li><a id="MyLinks1_NewPostLink" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>-->
+<li><a id="MyLinks1_ContactLink" rel="nofollow" href="http://space.cnblogs.com/msg/send/nlh774">联系</a></li>
+<li><a id="MyLinks1_Syndication" href="http://www.cnblogs.com/nlh774/rss">订阅</a></li><!--<a id="MyLinks1_XMLLink" href="http://www.cnblogs.com/nlh774/rss"><img src="http://www.cnblogs.com/images/xml.gif" alt="订阅" /></a>-->
+<li><a id="MyLinks1_Admin" rel="nofollow" href="http://i.cnblogs.com/">管理</a></li>
+</ul>
+</div>
+		<div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+		
+<h3>公告</h3>
+<div class="newsItem">
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>		
+		
+<div id="blog_stats">
+<h3>统计</h3>
+<ul>
+<li>随笔 - 34
+<li>文章 - 0
+<li>评论 - 0
+<!--<li>引用 - 0-->
+</li>
+</ul>
+</div>
+		<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+        
+		
+<div id="footer">
+	Powered by: 
+	<br />
+	
+	<a id="Footer1_Hyperlink3" NAME="Hyperlink1" href="http://www.cnblogs.com/" style="font-family:Verdana;font-size:12px;">博客园</a>
+	<br />
+	Copyright &copy; nlh774
+</div>
+	
+</div>			
+			
+	
+
+</body>
+</html>

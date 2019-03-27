@@ -1,0 +1,9 @@
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\Chat.Model\bin\Debug\Chat.Model.dll.config
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\Chat.Model\bin\Debug\Chat.Model.dll
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\Chat.Model\bin\Debug\Chat.Model.pdb
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\Chat.Model\bin\Debug\EntityFramework.dll
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\Chat.Model\bin\Debug\EntityFramework.xml
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\Chat.Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\Chat.Model\obj\Debug\Chat.Model.csprojResolveAssemblyReference.cache
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\Chat.Model\obj\Debug\Chat.Model.dll
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\Chat.Model\obj\Debug\Chat.Model.pdb

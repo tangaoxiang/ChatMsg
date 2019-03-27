@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CrmChat14ModelStoreContainer" CdmEntityContainer="CrmChat14Entities">
+    <EntitySetMapping Name="ChatMsg">
+      <EntityTypeMapping TypeName="CrmChat14Model.ChatMsg">
+        <MappingFragment StoreEntitySet="ChatMsg">
+          <ScalarProperty Name="cid" ColumnName="cid" />
+          <ScalarProperty Name="ToUserId" ColumnName="ToUserId" />
+          <ScalarProperty Name="ToRealName" ColumnName="ToRealName" />
+          <ScalarProperty Name="FromUserId" ColumnName="FromUserId" />
+          <ScalarProperty Name="FromRealName" ColumnName="FromRealName" />
+          <ScalarProperty Name="MessageBody" ColumnName="MessageBody" />
+          <ScalarProperty Name="SendTime" ColumnName="SendTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RouteMsgTable">
+      <EntityTypeMapping TypeName="CrmChat14Model.RouteMsgTable">
+        <MappingFragment StoreEntitySet="RouteMsgTable">
+          <ScalarProperty Name="rid" ColumnName="rid" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="BeginTime" ColumnName="BeginTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Usp_GetTotalCount15" FunctionName="CrmChat14Model.Store.Usp_GetTotalCount15" />
+    <FunctionImportMapping FunctionImportName="Usp_CreateTable15" FunctionName="CrmChat14Model.Store.Usp_CreateTable15" />
+    <FunctionImportMapping FunctionImportName="Usp_GetHistroryMsg15" FunctionName="CrmChat14Model.Store.Usp_GetHistroryMsg15">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CrmChat14Model.Usp_GetHistroryMsg15_Result">
+          <ScalarProperty Name="cid" ColumnName="cid" />
+          <ScalarProperty Name="ToUserId" ColumnName="ToUserId" />
+          <ScalarProperty Name="ToRealName" ColumnName="ToRealName" />
+          <ScalarProperty Name="FromUserId" ColumnName="FromUserId" />
+          <ScalarProperty Name="FromRealName" ColumnName="FromRealName" />
+          <ScalarProperty Name="MessageBody" ColumnName="MessageBody" />
+          <ScalarProperty Name="SendTime" ColumnName="SendTime" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

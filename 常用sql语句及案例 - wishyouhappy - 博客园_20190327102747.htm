@@ -1,0 +1,728 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>常用sql语句及案例 - wishyouhappy - 博客园</title>
+<link type="text/css" rel="stylesheet" href="/bundles/blog-common.css?v=gdNkSiQMyBMkpTeO1ex9qW-60UbMszQItnCUpBAT3LQ1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="http://common.cnblogs.com/Skins/coffee/style.css?id=20140415"/>
+<link type="text/css" rel="stylesheet" href="/blog/customcss/181558.css?v=e59DH49JSB%2butGaleEpWMbfa9wY%3d"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/wishyouhappy/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/wishyouhappy/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/wishyouhappy/wlwmanifest.xml"/>
+<script src="http://common.cnblogs.com/script/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'wishyouhappy', cb_enable_mathjax=false;</script>
+<script src="/bundles/blog-common.js?v=15gzXd7pJ_PNpSlGpVykf0EBaNg79HWL7oD5vVw0NGA1" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/wishyouhappy/"><img id="blogLogo" src="/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/wishyouhappy/">wishyouhappy</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="navigator">
+			
+<!--done-->
+			<ul id="navList">
+				<li><a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+				<li><a id="MyLinks1_IngLink" class="menu" href="http://home.cnblogs.com/ing/">闪存</a></li>
+				<li><a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/wishyouhappy/">首页</a></li>
+				<li><a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+				<li><a id="MyLinks1_ContactLink" accesskey="9" class="menu" rel="nofollow" href="http://space.cnblogs.com/msg/send/wishyouhappy">联系</a></li>
+				<li><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://i.cnblogs.com/">管理</a></li>
+				<li><a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/wishyouhappy/rss">订阅</a>
+				<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/wishyouhappy/rss"><img src="http://www.cnblogs.com/images/xml.gif" alt="订阅" /></a></li>
+			</ul>
+
+
+			<div class="blogStats">
+				
+				
+<!--done-->
+随笔- 31&nbsp;
+文章- 0&nbsp;
+评论- 13&nbsp;
+
+				
+			</div><!--end: blogStats -->
+		</div><!--end: navigator 博客导航栏 -->
+		
+
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/wishyouhappy/p/3700683.html">常用sql语句及案例</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><h1 class="wish_h1">目录</h1>
+<p><a href="#basic">1）基本</a></p>
+<p><a href="#math">2）数学函数</a></p>
+<p><a href="#rownum">3）rownum</a></p>
+<p><a href="#pag">4）分页</a></p>
+<p><a href="#time">5）时间处理</a></p>
+<p><a href="#char">6）字符函数</a></p>
+<p><a href="#tonumber">7）to_number</a></p>
+<p><a href="#agg">8）聚合函数</a></p>
+<p><a href="#student">9）学生选课</a></p>
+<p><a href="#lib">10）图书馆借阅</a></p>
+<p>&nbsp;</p>
+<h1 id="basic" class="wish_h1">基本</h1>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">--</span><span style="color: #008080;">新建表：</span>
+<span style="color: #0000ff;">create</span> <span style="color: #0000ff;">table</span> table1( id <span style="color: #0000ff;">varchar</span>(<span style="color: #800000; font-weight: bold;">300</span>) <span style="color: #0000ff;">primary</span> <span style="color: #0000ff;">key</span>, name <span style="color: #0000ff;">varchar</span>(<span style="color: #800000; font-weight: bold;">200</span>) <span style="color: #808080;">not</span> <span style="color: #0000ff;">null</span><span style="color: #000000;">);
+
+</span><span style="color: #008080;">--</span><span style="color: #008080;">插入数据   </span>
+<span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span> table1 (id,name) <span style="color: #0000ff;">values</span> (<span style="color: #ff0000;">'</span><span style="color: #ff0000;">aa</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">bb</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+ 
+</span><span style="color: #008080;">--</span><span style="color: #008080;">更新数据   </span>
+<span style="color: #0000ff;">update</span> table1 <span style="color: #0000ff;">set</span> id <span style="color: #808080;">=</span> <span style="color: #ff0000;">'</span><span style="color: #ff0000;">bb</span><span style="color: #ff0000;">'</span> <span style="color: #0000ff;">where</span> id<span style="color: #808080;">=</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">cc</span><span style="color: #ff0000;">'</span><span style="color: #000000;">;
+ 
+</span><span style="color: #008080;">--</span><span style="color: #008080;">删除数据   </span>
+<span style="color: #0000ff;">delete</span> <span style="color: #0000ff;">from</span> table1 <span style="color: #0000ff;">where</span> id <span style="color: #808080;">=</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">cc</span><span style="color: #ff0000;">'</span><span style="color: #000000;">;
+ 
+</span><span style="color: #008080;">--</span><span style="color: #008080;">删除表    </span>
+<span style="color: #0000ff;">drop</span> <span style="color: #0000ff;">table</span><span style="color: #000000;"> table1;
+ 
+
+</span><span style="color: #008080;">--</span><span style="color: #008080;">修改表名： </span>
+<span style="color: #0000ff;">alter</span> <span style="color: #0000ff;">table</span> table1 rename <span style="color: #0000ff;">to</span><span style="color: #000000;"> table2;
+ 
+</span><span style="color: #008080;">--</span><span style="color: #008080;">表数据复制：</span>
+<span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span> table1 (<span style="color: #0000ff;">select</span> <span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span><span style="color: #000000;"> table2);
+ 
+</span><span style="color: #008080;">--</span><span style="color: #008080;">复制表结构： </span>
+<span style="color: #0000ff;">create</span> <span style="color: #0000ff;">table</span> table1 <span style="color: #0000ff;">select</span> <span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> table2 <span style="color: #0000ff;">where</span> <span style="color: #800000; font-weight: bold;">1</span><span style="color: #808080;">&gt;</span><span style="color: #800000; font-weight: bold;">1</span><span style="color: #000000;">;
+ 
+</span><span style="color: #008080;">--</span><span style="color: #008080;">复制表结构和数据：</span>
+<span style="color: #0000ff;">create</span> <span style="color: #0000ff;">table</span> table1 <span style="color: #0000ff;">select</span> <span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span><span style="color: #000000;"> table2;
+ 
+</span><span style="color: #008080;">--</span><span style="color: #008080;">复制指定字段： </span>
+<span style="color: #0000ff;">create</span> <span style="color: #0000ff;">table</span> table1 <span style="color: #0000ff;">as</span> <span style="color: #0000ff;">select</span> id, name <span style="color: #0000ff;">from</span> table2 <span style="color: #0000ff;">where</span> <span style="color: #800000; font-weight: bold;">1</span><span style="color: #808080;">&gt;</span><span style="color: #800000; font-weight: bold;">1</span><span style="color: #000000;">;
+
+</span><span style="color: #008080;">--</span><span style="color: #008080;">条件查询： </span>
+<span style="color: #0000ff;">select</span> id,name (<span style="color: #ff00ff;">case</span> gender <span style="color: #0000ff;">when</span> <span style="color: #800000; font-weight: bold;">0</span> <span style="color: #0000ff;">then</span> <span style="color: #ff0000;">'</span><span style="color: #ff0000;">男</span><span style="color: #ff0000;">'</span> <span style="color: #0000ff;">when</span> <span style="color: #800000; font-weight: bold;">1</span> <span style="color: #0000ff;">then</span> &lsquo;女&rsquo; <span style="color: #0000ff;">end</span>  ) gender <span style="color: #0000ff;">from</span><span style="color: #000000;">  table1 
+ 
+</span><span style="color: #008080;"><br /></span></pre>
+</div>
+<p>&nbsp;</p>
+<h1 id="math" class="wish_h1">数学函数</h1>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">--</span><span style="color: #008080;">绝对值：abs()</span>
+   <span style="color: #0000ff;">select</span> <span style="color: #ff00ff;">abs</span>(<span style="color: #808080;">-</span><span style="color: #800000; font-weight: bold;">2</span>) value <span style="color: #0000ff;">from</span><span style="color: #000000;"> dual;
+
+</span><span style="color: #008080;">--</span><span style="color: #008080;">取整函数（大）：ceil（）</span>
+   <span style="color: #0000ff;">select</span> ceil(<span style="color: #808080;">-</span><span style="color: #800000; font-weight: bold;">2.001</span>) value <span style="color: #0000ff;">from</span> dual;       <span style="color: #008080;">--</span><span style="color: #008080;">(-2)</span>
+
+<span style="color: #008080;">--</span><span style="color: #008080;">取整函数（小）：floor（）</span>
+   <span style="color: #0000ff;">select</span> <span style="color: #ff00ff;">floor</span>(<span style="color: #808080;">-</span><span style="color: #800000; font-weight: bold;">2.001</span>) value <span style="color: #0000ff;">from</span> dual;       <span style="color: #008080;">--</span><span style="color: #008080;">(-3)</span>
+
+<span style="color: #008080;">--</span><span style="color: #008080;">取整函数（截取）：trunc（）</span>
+   <span style="color: #0000ff;">select</span> trunc(<span style="color: #808080;">-</span><span style="color: #800000; font-weight: bold;">2.001</span>) value <span style="color: #0000ff;">from</span> dual;       <span style="color: #008080;">--</span><span style="color: #008080;"> (-2)</span>
+
+<span style="color: #008080;">--</span><span style="color: #008080;">四舍五入：round（）</span>
+   <span style="color: #0000ff;">select</span> <span style="color: #ff00ff;">round</span>(<span style="color: #800000; font-weight: bold;">1.234564</span>) value <span style="color: #0000ff;">from</span> dual;       <span style="color: #008080;">--</span><span style="color: #008080;">(1.2346)</span>
+
+<span style="color: #008080;">--</span><span style="color: #008080;">取平方：Power（m,n）</span>
+   <span style="color: #0000ff;">select</span> <span style="color: #ff00ff;">power</span>(<span style="color: #800000; font-weight: bold;">4</span>,<span style="color: #800000; font-weight: bold;">2</span>) value <span style="color: #0000ff;">from</span> dual;       <span style="color: #008080;">--</span><span style="color: #008080;">(16)</span>
+
+<span style="color: #008080;">--</span><span style="color: #008080;">取平方根:SQRT()</span>
+   <span style="color: #0000ff;">select</span> <span style="color: #ff00ff;">sqrt</span>(<span style="color: #800000; font-weight: bold;">16</span>) value <span style="color: #0000ff;">from</span> dual;       <span style="color: #008080;">--</span><span style="color: #008080;">(4)</span>
+
+<span style="color: #008080;">--</span><span style="color: #008080;">取随机数:dbms_random(minvalue,maxvalue)</span>
+   <span style="color: #0000ff;">select</span> sys.dbms.random.value(<span style="color: #800000; font-weight: bold;">0</span>,<span style="color: #800000; font-weight: bold;">1</span>) value <span style="color: #0000ff;">from</span><span style="color: #000000;"> dual;
+
+</span><span style="color: #008080;">--</span><span style="color: #008080;">取符号：Sign()</span>
+   <span style="color: #0000ff;">select</span> <span style="color: #ff00ff;">sign</span>(<span style="color: #808080;">-</span><span style="color: #800000; font-weight: bold;">3</span>) value <span style="color: #0000ff;">from</span> dual;       <span style="color: #008080;">--</span><span style="color: #008080;">(-)</span>
+
+<span style="color: #008080;">--</span><span style="color: #008080;">取集合的最大值:greatest(value)</span>
+   <span style="color: #0000ff;">select</span> greatest(<span style="color: #808080;">-</span><span style="color: #800000; font-weight: bold;">1</span>,<span style="color: #800000; font-weight: bold;">3</span>,<span style="color: #800000; font-weight: bold;">5</span>,<span style="color: #800000; font-weight: bold;">7</span>,<span style="color: #800000; font-weight: bold;">9</span>) value <span style="color: #0000ff;">from</span> dual;       <span style="color: #008080;">--</span><span style="color: #008080;">(9)</span>
+
+<span style="color: #008080;">--</span><span style="color: #008080;">取集合的最小值:least(value)</span>
+   <span style="color: #0000ff;">select</span> least(<span style="color: #808080;">-</span><span style="color: #800000; font-weight: bold;">1</span>,<span style="color: #800000; font-weight: bold;">3</span>,<span style="color: #800000; font-weight: bold;">5</span>,<span style="color: #800000; font-weight: bold;">7</span>,<span style="color: #800000; font-weight: bold;">9</span>) value <span style="color: #0000ff;">from</span> dual;       <span style="color: #008080;">--</span><span style="color: #008080;">(-1)</span>
+
+<span style="color: #008080;">--</span><span style="color: #008080;">处理Null值：nvl(空值，代替值)</span>
+   <span style="color: #0000ff;">select</span>  nvl(<span style="color: #0000ff;">null</span>,<span style="color: #800000; font-weight: bold;">10</span>) value <span style="color: #0000ff;">from</span> dual;       <span style="color: #008080;">--</span><span style="color: #008080;">(10)</span>
+　　
+   <span style="color: #0000ff;">select</span> <span style="background-color: #ff9900;">nvl(score,<span style="color: #800000; font-weight: bold;">10</span>)</span> score <span style="color: #0000ff;">from</span> student;</pre>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1 id="rownum" class="wish_h1">&nbsp;rownum相关</h1>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">--</span><span style="color: #008080;">rownum小于某个数时可以直接作为查询条件（注意oracle不支持select top）</span>
+<span style="color: #0000ff;">select</span> <span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> student <span style="color: #0000ff;">where</span> rownum <span style="color: #808080;">&lt;</span><span style="color: #800000; font-weight: bold;">3</span><span style="color: #000000;">;
+
+</span><span style="color: #008080;">--</span><span style="color: #008080;">查询rownum大于某个数值,需要使用子查询，并且rownum需要有别名</span>
+<span style="color: #0000ff;">select</span> <span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span>(<span style="color: #0000ff;">select</span> rownum rn ,id,name <span style="color: #0000ff;">from</span> student) <span style="color: #0000ff;">where</span> rn<span style="color: #808080;">&gt;</span><span style="color: #800000; font-weight: bold;">2</span><span style="color: #000000;">;
+</span><span style="color: #0000ff;">select</span> <span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> (<span style="color: #0000ff;">select</span> rownum rn, student.<span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> student) <span style="color: #0000ff;">where</span> rn <span style="color: #808080;">&gt;</span><span style="color: #800000; font-weight: bold;">3</span><span style="color: #000000;">;
+
+</span><span style="color: #008080;">--</span><span style="color: #008080;">区间查询</span>
+<span style="color: #0000ff;">select</span> <span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> (<span style="color: #0000ff;">select</span> rownum rn, student.<span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> student) <span style="color: #0000ff;">where</span> rn <span style="color: #808080;">&gt;</span><span style="color: #800000; font-weight: bold;">3</span> <span style="color: #808080;">and</span> rn<span style="color: #808080;">&lt;</span><span style="color: #800000; font-weight: bold;">6</span><span style="color: #000000;">;
+
+</span><span style="color: #008080;">--</span><span style="color: #008080;">排序+前n条</span>
+<span style="color: #0000ff;">select</span> <span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> (<span style="color: #0000ff;">select</span> rownum rn, t.<span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> ( <span style="color: #0000ff;">select</span> d.<span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> DJDRUVER d <span style="color: #0000ff;">order</span>  <span style="color: #0000ff;">by</span> drivernumber)t )p <span style="color: #0000ff;">where</span> p.rn<span style="color: #808080;">&lt;</span><span style="color: #800000; font-weight: bold;">10</span><span style="color: #000000;">;
+
+</span><span style="color: #008080;">--</span><span style="color: #008080;">排序+区间查询1</span>
+<span style="color: #0000ff;">select</span> <span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> (<span style="color: #0000ff;">select</span> rownum rn, t.<span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> ( <span style="color: #0000ff;">select</span> d.<span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> DJDRIVER d <span style="color: #0000ff;">order</span> <span style="color: #0000ff;">by</span> DJDRIVER_DRIVERTIMES)t )p <span style="color: #0000ff;">where</span> p.rn<span style="color: #808080;">&lt;</span><span style="color: #800000; font-weight: bold;">9</span> <span style="color: #808080;">and</span> p.rn<span style="color: #808080;">&gt;</span><span style="color: #800000; font-weight: bold;">6</span><span style="color: #000000;">;
+
+</span><span style="color: #008080;">--</span><span style="color: #008080;">排序+区间查询2</span>
+<span style="color: #0000ff;">select</span> <span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> (<span style="color: #0000ff;">select</span> rownum rn, t.<span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> ( <span style="color: #0000ff;">select</span> d.<span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> DJDRIVER d <span style="color: #0000ff;">order</span> <span style="color: #0000ff;">by</span> DJDRIVER_DRIVERTIMES)t <span style="color: #0000ff;">where</span> rownum<span style="color: #808080;">&lt;</span><span style="color: #800000; font-weight: bold;">9</span> )p <span style="color: #0000ff;">where</span> p.rn<span style="color: #808080;">&gt;</span><span style="color: #800000; font-weight: bold;">6</span>;<em><span style="color: #ff9900;">--效率远高于方式一</span></em></pre>
+</div>
+<p>&nbsp;</p>
+<h1 id="pag" class="wish_h1">&nbsp;分页查询</h1>
+<p>（假设每页显示10条）</p>
+<p><strong>不包含排序：</strong></p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">--</span><span style="color: #008080;">效率低</span>
+
+<span style="color: #0000ff;">select</span> <span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> (<span style="color: #0000ff;">select</span> rownum rn, d.<span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> DJDRIVER d  )p <span style="color: #0000ff;">where</span> p.rn<span style="color: #808080;">&lt;=</span><span style="color: #800000; font-weight: bold;">20</span> <span style="color: #808080;">and</span> p.rn<span style="color: #808080;">&gt;=</span><span style="color: #800000; font-weight: bold;">10</span><span style="color: #000000;">;<br />
+</span><span style="color: #0000ff;">select</span> <span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> (<span style="color: #0000ff;">select</span> rownum rn, d.<span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> DJDRIVER d  )p <span style="color: #0000ff;">where</span> p.rn <span style="color: #808080;">between</span> <span style="color: #800000; font-weight: bold;">10</span> <span style="color: #808080;">and</span> <span style="color: #800000; font-weight: bold;">20</span><span style="color: #000000;">;
+
+</span><span style="color: #008080;">--</span><span style="color: #008080;">效率高 </span>
+
+<span style="color: #0000ff;">select</span> <span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> (<span style="color: #0000ff;">select</span> rownum rn, d.<span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> DJDRIVER d <span style="color: #0000ff;">where</span> rownum<span style="color: #808080;">&lt;=</span><span style="color: #800000; font-weight: bold;">20</span> )p <span style="color: #0000ff;">where</span> p.rn<span style="color: #808080;">&gt;=</span><span style="color: #800000; font-weight: bold;">10</span>;</pre>
+</div>
+<p><strong>包含排序：</strong></p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">--</span><span style="color: #008080;">排序+区间查询1（效率低）<br /></span>
+<span style="color: #0000ff;">select</span> <span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> (<span style="color: #0000ff;">select</span> rownum rn, t.<span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> ( <span style="color: #0000ff;">select</span> d.<span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> DJDRIVER d <span style="color: #0000ff;">order</span> <span style="color: #0000ff;">by</span> DJDRIVER_DRIVERTIMES)t )p <span style="color: #0000ff;">where</span> p.rn<span style="color: #808080;">&lt;=</span><span style="color: #800000; font-weight: bold;">20</span> <span style="color: #808080;">and</span> p.rn<span style="color: #808080;">&gt;=</span><span style="color: #800000; font-weight: bold;">10</span><span style="color: #000000;">;<br />
+</span><span style="color: #0000ff;">select</span> <span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> (<span style="color: #0000ff;">select</span> rownum rn, t.<span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> ( <span style="color: #0000ff;">select</span> d.<span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> DJDRIVER d <span style="color: #0000ff;">order</span> <span style="color: #0000ff;">by</span> DJDRIVER_DRIVERTIMES)t )p <span style="color: #0000ff;">where</span> p.rn <span style="color: #808080;">between</span> <span style="color: #800000; font-weight: bold;">10</span> <span style="color: #808080;">and</span> <span style="color: #800000; font-weight: bold;">20</span><span style="color: #000000;">;
+
+</span><span style="color: #008080;">--</span><span style="color: #008080;">排序+区间查询2（效率高） <br /></span>
+<span style="color: #0000ff;">select</span> <span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> (<span style="color: #0000ff;">select</span> rownum rn, t.<span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> ( <span style="color: #0000ff;">select</span> d.<span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> DJDRIVER d <span style="color: #0000ff;">order</span> <span style="color: #0000ff;">by</span> DJDRIVER_DRIVERTIMES)t <span style="color: #0000ff;">where</span> rownum<span style="color: #808080;">&lt;=</span><span style="color: #800000; font-weight: bold;">20</span> )p <span style="color: #0000ff;">where</span> p.rn<span style="color: #808080;">&gt;=</span><span style="color: #800000; font-weight: bold;">10</span>;</pre>
+</div>
+<p>&nbsp;</p>
+<h1 id="time" class="wish_h1">&nbsp;时间处理</h1>
+<p><strong>1. to_char和to_date基本使用</strong></p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">--</span><span style="color: #008080;">日期</span><span style="color: #008080;">
+--</span><span style="color: #008080;">年 yyyy yyy yy year</span><span style="color: #008080;">
+--</span><span style="color: #008080;">月 month mm mon month</span><span style="color: #008080;">
+--</span><span style="color: #008080;">日+星期  dd ddd(一年中第几天) dy day </span><span style="color: #008080;">
+--</span><span style="color: #008080;">小时  hh hh24 </span><span style="color: #008080;">
+--</span><span style="color: #008080;">分 mi</span><span style="color: #008080;">
+--</span><span style="color: #008080;">秒 ss</span></pre>
+</div>
+<p>eg1:</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">select</span> to_char(sysdate,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span><span style="color: #000000;">)currenttime, 
+       to_char(sysdate,</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy</span><span style="color: #ff0000;">'</span>) <span style="color: #ff00ff;">year</span><span style="color: #000000;">,
+       to_char(sysdate,</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">mm</span><span style="color: #ff0000;">'</span>) <span style="color: #ff00ff;">month</span><span style="color: #000000;">,
+       to_char(sysdate,</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">dd</span><span style="color: #ff0000;">'</span>) <span style="color: #ff00ff;">day</span><span style="color: #000000;">,
+       to_char(sysdate,</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">day</span><span style="color: #ff0000;">'</span><span style="color: #000000;">) week,
+       to_char(sysdate,</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">hh24</span><span style="color: #ff0000;">'</span><span style="color: #000000;">)hour,
+       to_char(sysdate,</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">mi</span><span style="color: #ff0000;">'</span><span style="color: #000000;">) minute,
+       to_char(sysdate,</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">ss</span><span style="color: #ff0000;">'</span><span style="color: #000000;">) second
+</span><span style="color: #0000ff;">from</span> dual;</pre>
+</div>
+<p><img src="http://images.cnitblog.com/i/617995/201405/021239281117035.png" alt="" /></p>
+<p>eg2:</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">select</span> to_date(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2009-07-04 05:02:01</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span><span style="color: #000000;">)currenttime,
+       to_char(to_date(</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2009-07-04 05:02:01</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span>),<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy</span><span style="color: #ff0000;">'</span>)<span style="color: #ff00ff;">year</span><span style="color: #000000;">,
+       to_char(to_date(</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2009-07-04 05:02:01</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span>),<span style="color: #ff0000;">'</span><span style="color: #ff0000;">mm</span><span style="color: #ff0000;">'</span>)<span style="color: #ff00ff;">month</span><span style="color: #000000;">,
+       to_char(to_date(</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2009-07-04 05:02:01</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span>),<span style="color: #ff0000;">'</span><span style="color: #ff0000;">dd</span><span style="color: #ff0000;">'</span>) <span style="color: #ff00ff;">day</span><span style="color: #000000;">,
+       to_char(to_date(</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2009-07-04 05:02:01</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span>),<span style="color: #ff0000;">'</span><span style="color: #ff0000;">day</span><span style="color: #ff0000;">'</span><span style="color: #000000;">) week,
+       to_char(to_date(</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2009-07-04 05:02:01</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span>),<span style="color: #ff0000;">'</span><span style="color: #ff0000;">day</span><span style="color: #ff0000;">'</span>,<strong><em><span style="color: #ff9900;">'NLS_DATE_LANGUAGE=American'</span></em></strong><span style="color: #000000;">) week, <em><span style="color: #ff9900;">--设置语言</span></em>
+       to_char(to_date(</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2009-07-04 05:02:01</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span>),<span style="color: #ff0000;">'</span><span style="color: #ff0000;">hh24</span><span style="color: #ff0000;">'</span><span style="color: #000000;">)hour,
+       to_char(to_date(</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2009-07-04 05:02:01</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span>),<span style="color: #ff0000;">'</span><span style="color: #ff0000;">mi</span><span style="color: #ff0000;">'</span><span style="color: #000000;">) minute,
+       to_char(to_date(</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2009-07-04 05:02:01</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span>),<span style="color: #ff0000;">'</span><span style="color: #ff0000;">ss</span><span style="color: #ff0000;">'</span><span style="color: #000000;">) second
+</span><span style="color: #0000ff;">from</span> dual;</pre>
+</div>
+<p><img src="http://images.cnitblog.com/i/617995/201405/021241046898907.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>2）months_between</p>
+<div class="cnblogs_code">
+<pre> <span style="color: #0000ff;">select</span> months_between(to_date(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">03-31-2014</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">MM-DD-YYYY</span><span style="color: #ff0000;">'</span>),to_date(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">12-31-2013</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">MM-DD-YYYY</span><span style="color: #ff0000;">'</span><span style="color: #000000;">)) "MONTHS"
+ </span><span style="color: #0000ff;">FROM</span> DUAL;   </pre>
+</div>
+<p><img src="http://images.cnitblog.com/i/617995/201405/021251407368422.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>3)next_day</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">select</span> sysdate today, next_day(sysdate,<span style="color: #800000; font-weight: bold;">6</span>) nextweek <span style="color: #0000ff;">from</span> dual;</pre>
+</div>
+<p><img src="http://images.cnitblog.com/i/617995/201405/021258277671039.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>4)时间区间</p>
+<p>eg：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">select</span> cardid, borrowdate <span style="color: #0000ff;">from</span> borrow <span style="color: #0000ff;">where</span> to_date(borrowdate,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span>)  <span style="color: #808080;">between</span><span style="color: #000000;"> 
+to_date(</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-02-01 00:00:00</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span>) <span style="color: #808080;">and</span><span style="color: #000000;"> 
+to_date(</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-05-01 00:00:00</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span>); </pre>
+</div>
+<p>&nbsp;</p>
+<p>5）interval</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">select</span> to_char(sysdate,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span><span style="color: #000000;">) currenttime,
+       to_char(sysdate </span><span style="color: #808080;">-</span> interval <span style="color: #ff0000;">'</span><span style="color: #ff0000;">7</span><span style="color: #ff0000;">'</span> <span style="color: #ff00ff;">year</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span><span style="color: #000000;">) intervalyear,   
+       to_char(sysdate </span><span style="color: #808080;">-</span> interval <span style="color: #ff0000;">'</span><span style="color: #ff0000;">7</span><span style="color: #ff0000;">'</span> <span style="color: #ff00ff;">month</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span><span style="color: #000000;">) intervalMonth,   
+       to_char(sysdate </span><span style="color: #808080;">-</span> interval <span style="color: #ff0000;">'</span><span style="color: #ff0000;">7</span><span style="color: #ff0000;">'</span> <span style="color: #ff00ff;">day</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span><span style="color: #000000;">) intervalday,   
+       to_char(sysdate </span><span style="color: #808080;">-</span> interval <span style="color: #ff0000;">'</span><span style="color: #ff0000;">7</span><span style="color: #ff0000;">'</span> hour,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span><span style="color: #000000;">) intervalHour,   
+       to_char(sysdate </span><span style="color: #808080;">-</span> interval <span style="color: #ff0000;">'</span><span style="color: #ff0000;">7</span><span style="color: #ff0000;">'</span> minute,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span><span style="color: #000000;">) intervalMinute,   
+       to_char(sysdate </span><span style="color: #808080;">-</span> interval <span style="color: #ff0000;">'</span><span style="color: #ff0000;">7</span><span style="color: #ff0000;">'</span> second,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span><span style="color: #000000;">) intervalSecond  
+  </span><span style="color: #0000ff;">from</span> dual; </pre>
+</div>
+<p>&nbsp;</p>
+<p><img src="http://images.cnitblog.com/i/617995/201405/021315497522671.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>6）add_months</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">select</span> add_months(sysdate,<span style="color: #800000; font-weight: bold;">12</span>) newtime <span style="color: #0000ff;">from</span> dual;</pre>
+</div>
+<p>&nbsp;</p>
+<p>7)extract</p>
+<div class="cnblogs_code">
+<pre> <span style="color: #0000ff;">select</span> extract(<span style="color: #ff00ff;">month</span> <span style="color: #0000ff;">from</span> sysdate) "This <span style="color: #ff00ff;">Month</span><span style="color: #000000;">",
+extract(</span><span style="color: #ff00ff;">year</span> <span style="color: #0000ff;">from</span> add_months(sysdate,<span style="color: #800000; font-weight: bold;">36</span>)) " Years" <span style="color: #0000ff;">from</span> dual; </pre>
+</div>
+<p><img src="http://images.cnitblog.com/i/617995/201405/021327153773967.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1 id="char" class="wish_h1">字符函数</h1>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">--</span><span style="color: #008080;">字符函数</span>
+<span style="color: #0000ff;">select</span> substr(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">abcdefg</span><span style="color: #ff0000;">'</span>,<span style="color: #800000; font-weight: bold;">1</span>,<span style="color: #800000; font-weight: bold;">5</span>)substr,                     <span style="color: #008080;">--</span><span style="color: #008080;">字符串截取</span>
+       instr(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">abcdefg</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">bc</span><span style="color: #ff0000;">'</span>) instr,                     <span style="color: #008080;">--</span><span style="color: #008080;">查找子串</span>
+       
+       <span style="color: #ff0000;">'</span><span style="color: #ff0000;">Hello</span><span style="color: #ff0000;">'</span><span style="color: #808080;">||</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">World</span><span style="color: #ff0000;">'</span> concat,                         <span style="color: #008080;">--</span><span style="color: #008080;">连接</span>
+<span style="color: #000000;">       
+       trim(</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">  wish  </span><span style="color: #ff0000;">'</span>) trim,                           <span style="color: #008080;">--</span><span style="color: #008080;">去前后空格</span>
+       <span style="color: #ff00ff;">rtrim</span>(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">wish  </span><span style="color: #ff0000;">'</span>) <span style="color: #ff00ff;">rtrim</span>,                           <span style="color: #008080;">--</span><span style="color: #008080;">去后面空格</span>
+       <span style="color: #ff00ff;">ltrim</span>(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">  wish</span><span style="color: #ff0000;">'</span>) <span style="color: #ff00ff;">ltrim</span>,                           <span style="color: #008080;">--</span><span style="color: #008080;">去前面空格</span>
+<span style="color: #000000;">       
+       trim(leading </span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">w</span><span style="color: #ff0000;">'</span> <span style="color: #0000ff;">from</span> <span style="color: #ff0000;">'</span><span style="color: #ff0000;">wish</span><span style="color: #ff0000;">'</span>) deleteprefix,      <span style="color: #008080;">--</span><span style="color: #008080;">去前缀</span>
+       trim(trailing <span style="color: #ff0000;">'</span><span style="color: #ff0000;">h</span><span style="color: #ff0000;">'</span> <span style="color: #0000ff;">from</span> <span style="color: #ff0000;">'</span><span style="color: #ff0000;">wish</span><span style="color: #ff0000;">'</span>) deletetrailing,   <span style="color: #008080;">--</span><span style="color: #008080;">去后缀</span>
+       trim(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">w</span><span style="color: #ff0000;">'</span> <span style="color: #0000ff;">from</span> <span style="color: #ff0000;">'</span><span style="color: #ff0000;">wish</span><span style="color: #ff0000;">'</span><span style="color: #000000;">) trim1,
+       
+       </span><span style="color: #ff00ff;">ascii</span>(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">A</span><span style="color: #ff0000;">'</span><span style="color: #000000;">) A1, 
+       </span><span style="color: #ff00ff;">ascii</span>(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">a</span><span style="color: #ff0000;">'</span>) A2,                                   <span style="color: #008080;">--</span><span style="color: #008080;">ascii(转换为对应的十进制数)</span>
+       chr(<span style="color: #800000; font-weight: bold;">65</span><span style="color: #000000;">) C1, 
+       chr(</span><span style="color: #800000; font-weight: bold;">97</span>) C2,                                      <span style="color: #008080;">--</span><span style="color: #008080;">chr(十进制转对应字符)</span>
+<span style="color: #000000;">       
+       length(</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">abcdefg</span><span style="color: #ff0000;">'</span>) <span style="color: #ff00ff;">len</span>,                           <span style="color: #008080;">--</span><span style="color: #008080;">length </span>
+       
+       <span style="color: #ff00ff;">lower</span>(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">WISH</span><span style="color: #ff0000;">'</span>)<span style="color: #ff00ff;">lower</span><span style="color: #000000;">, 
+       </span><span style="color: #ff00ff;">upper</span>(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">wish</span><span style="color: #ff0000;">'</span>)<span style="color: #ff00ff;">upper</span><span style="color: #000000;">, 
+       initcap(</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">wish</span><span style="color: #ff0000;">'</span>)initcap,                            <span style="color: #008080;">--</span><span style="color: #008080;">大小写变换</span>
+       
+       <span style="color: #ff00ff;">replace</span>(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">wish1</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">1</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">youhappy</span><span style="color: #ff0000;">'</span>) <span style="color: #ff00ff;">replace</span>,           <span style="color: #008080;">--</span><span style="color: #008080;">替换</span>
+<span style="color: #000000;">       
+       translate(</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">wish1</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">1</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">y</span><span style="color: #ff0000;">'</span>)translate,               -<span style="color: #008080;">-</span><span style="color: #008080;">转换，对应一位(前面的位数大于等于后面的位数)</span>
+       translate(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">wish1</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">sh1</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">hy</span><span style="color: #ff0000;">'</span><span style="color: #000000;">)translate1,
+       
+       concat(</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">11</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">22</span><span style="color: #ff0000;">'</span>) concat          　　　　　　　　   <span style="color: #008080;">--</span><span style="color: #008080;">连接<br /><br /></span>
+<span style="color: #0000ff;">from</span> dual;</pre>
+</div>
+<p>&nbsp;</p>
+<p><img src="http://images.cnitblog.com/i/617995/201405/021357458459884.png" alt="" width="1864" height="79" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1 id="tonumber" class="wish_h1">to_number</h1>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">--</span><span style="color: #008080;">to_number(expr)</span><span style="color: #008080;">
+--</span><span style="color: #008080;">to_number(expr,format)</span><span style="color: #008080;">
+--</span><span style="color: #008080;">to_number(expr,format,'nls-param')</span>
+
+<span style="color: #0000ff;">select</span> to_number(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">0123</span><span style="color: #ff0000;">'</span>)number1,            <span style="color: #008080;">--</span><span style="color: #008080;">converts a string to number</span>
+       trunc(to_number(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">0123.123</span><span style="color: #ff0000;">'</span>),<span style="color: #800000; font-weight: bold;">2</span><span style="color: #000000;">) number2,
+       to_number(</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">120.11</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">999.99</span><span style="color: #ff0000;">'</span><span style="color: #000000;">) number3,</span></pre>
+<pre><span style="color: #000000;"> 　　　 to_number(</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">0a</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">xx</span><span style="color: #ff0000;">'</span>) number4,        <span style="color: #008080;">--</span><span style="color: #008080;">converts a hex number to decimal</span>
+       to_number(<span style="color: #800000; font-weight: bold;">100000</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">xxxxxx</span><span style="color: #ff0000;">'</span><span style="color: #000000;">) number5
+  
+</span><span style="color: #0000ff;">from</span> dual;</pre>
+</div>
+<p><img src="http://images.cnitblog.com/i/617995/201405/021454176111823.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1 id="agg" class="wish_h1">聚合函数</h1>
+<p>student表如下：</p>
+<p><img src="http://images.cnitblog.com/i/617995/201405/021516387364977.png" alt="" /></p>
+<p><strong>count：</strong></p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">--</span><span style="color: #008080;">count (distinct|all)</span>
+<span style="color: #0000ff;">select</span> <span style="color: #ff00ff;">count</span>(<span style="color: #800000; font-weight: bold;">1</span>) <span style="color: #0000ff;">as</span> <span style="color: #ff00ff;">count</span> <span style="color: #0000ff;">from</span> student;<span style="color: #008080;">--</span><span style="color: #008080;">效率最高</span>
+<span style="color: #0000ff;">select</span> <span style="color: #ff00ff;">count</span>(<span style="color: #808080;">*</span>) <span style="color: #0000ff;">as</span> <span style="color: #ff00ff;">count</span> <span style="color: #0000ff;">from</span><span style="color: #000000;"> student;    
+</span><span style="color: #0000ff;">select</span> <span style="color: #ff00ff;">count</span>(<span style="color: #0000ff;">distinct</span> score) <span style="color: #0000ff;">from</span> student;     </pre>
+</div>
+<p>语句1结果：11</p>
+<p>&nbsp;</p>
+<p><strong>avg</strong></p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">--</span><span style="color: #008080;">avg (distinct|all)</span>
+<span style="color: #0000ff;">select</span> <span style="color: #ff00ff;">avg</span>(score) score <span style="color: #0000ff;">from</span><span style="color: #000000;"> student;
+</span><span style="color: #0000ff;">select</span> <span style="color: #ff00ff;">avg</span>(<span style="color: #0000ff;">distinct</span> score) <span style="color: #0000ff;">from</span><span style="color: #000000;"> student;
+</span><span style="color: #0000ff;">select</span> classno,<span style="color: #ff00ff;">avg</span>(score) score <span style="color: #0000ff;">from</span> student <span style="color: #0000ff;">group</span> <span style="color: #0000ff;">by</span> classno;</pre>
+</div>
+<p>&nbsp;</p>
+<p>语句3输出结果：</p>
+<p><img src="http://images.cnitblog.com/i/617995/201405/021518052679411.png" alt="" /></p>
+<p>&nbsp;</p>
+<p><strong>max</strong></p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">--</span><span style="color: #008080;">max (distinct|all)</span>
+<span style="color: #0000ff;">select</span> <span style="color: #ff00ff;">max</span>(score) <span style="color: #0000ff;">from</span><span style="color: #000000;"> student;
+</span><span style="color: #0000ff;">select</span> classno, <span style="color: #ff00ff;">max</span>(score) score <span style="color: #0000ff;">from</span> student <span style="color: #0000ff;">group</span> <span style="color: #0000ff;">by</span> classno;</pre>
+</div>
+<p>&nbsp;</p>
+<p><strong>min</strong></p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">--</span><span style="color: #008080;">min (distinct|all)</span>
+<span style="color: #0000ff;">select</span> <span style="color: #ff00ff;">min</span>(score) <span style="color: #0000ff;">from</span><span style="color: #000000;"> student;
+</span><span style="color: #0000ff;">select</span> classno, <span style="color: #ff00ff;">min</span>(score) score <span style="color: #0000ff;">from</span> student <span style="color: #0000ff;">group</span> <span style="color: #0000ff;">by</span> classno;</pre>
+</div>
+<p>&nbsp;</p>
+<p><strong>stddev（standard deviation）标准差</strong></p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">--</span><span style="color: #008080;">stddev</span>
+<span style="color: #0000ff;">select</span> stddev(score) <span style="color: #0000ff;">from</span><span style="color: #000000;"> student;
+</span><span style="color: #0000ff;">select</span> classno, stddev(score) score <span style="color: #0000ff;">from</span> student <span style="color: #0000ff;">group</span> <span style="color: #0000ff;">by</span> classno;</pre>
+</div>
+<p>&nbsp;</p>
+<p><strong>sum</strong></p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">--</span><span style="color: #008080;">sum</span>
+<span style="color: #0000ff;">select</span> <span style="color: #ff00ff;">sum</span>(score) <span style="color: #0000ff;">from</span><span style="color: #000000;"> student;
+</span><span style="color: #0000ff;">select</span> classno, <span style="color: #ff00ff;">sum</span>(score) score <span style="color: #0000ff;">from</span> student <span style="color: #0000ff;">group</span> <span style="color: #0000ff;">by</span> classno;</pre>
+</div>
+<p>&nbsp;</p>
+<p><strong>median--中位数</strong></p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">--</span><span style="color: #008080;">median</span>
+<span style="color: #0000ff;">select</span> median(score) <span style="color: #0000ff;">from</span><span style="color: #000000;"> student;
+</span><span style="color: #0000ff;">select</span> classno, median(score) score <span style="color: #0000ff;">from</span> student <span style="color: #0000ff;">group</span> <span style="color: #0000ff;">by</span> classno;</pre>
+</div>
+<p>&nbsp;</p>
+<h1 id="student" class="wish_h1">&nbsp;案例1--学生选课</h1>
+<p>1. 创建表 stu（学生表），course（课程表），选课表（s_c）</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">--</span><span style="color: #008080;">创建表</span>
+
+<span style="color: #0000ff;">create</span> <span style="color: #0000ff;">table</span><span style="color: #000000;"> STU  
+(  
+  id   </span><span style="color: #0000ff;">NUMBER</span> <span style="color: #808080;">not</span> <span style="color: #0000ff;">null</span><span style="color: #000000;">,  
+  name </span><span style="color: #0000ff;">VARCHAR2</span>(<span style="color: #800000; font-weight: bold;">255</span><span style="color: #000000;">)  
+) ;
+   
+</span><span style="color: #0000ff;">create</span> <span style="color: #0000ff;">table</span><span style="color: #000000;"> COURSE  
+(  
+  id  </span><span style="color: #0000ff;">NUMBER</span> <span style="color: #808080;">not</span> <span style="color: #0000ff;">null</span><span style="color: #000000;">,  
+  coursename </span><span style="color: #0000ff;">VARCHAR2</span>(<span style="color: #800000; font-weight: bold;">255</span><span style="color: #000000;">)  
+) ; 
+   
+</span><span style="color: #0000ff;">create</span> <span style="color: #0000ff;">table</span><span style="color: #000000;"> S_C  
+(  
+  sid    </span><span style="color: #0000ff;">NUMBER</span><span style="color: #000000;">,  
+  cid    </span><span style="color: #0000ff;">NUMBER</span><span style="color: #000000;">,  
+  score </span><span style="color: #0000ff;">NUMBER</span><span style="color: #000000;">  
+);</span></pre>
+</div>
+<p>&nbsp;</p>
+<p>2.插入数据</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">--</span><span style="color: #008080;">插入数据</span>
+<span style="color: #0000ff;">Insert</span> <span style="color: #0000ff;">into</span> STU (ID,NAME) <span style="color: #0000ff;">values</span> (<span style="color: #800000; font-weight: bold;">1</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">wish</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">Insert</span> <span style="color: #0000ff;">into</span> STU (ID,NAME) <span style="color: #0000ff;">values</span> (<span style="color: #800000; font-weight: bold;">2</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">rain</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">Insert</span> <span style="color: #0000ff;">into</span> STU (ID,NAME) <span style="color: #0000ff;">values</span> (<span style="color: #800000; font-weight: bold;">3</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">july</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">Insert</span> <span style="color: #0000ff;">into</span> STU (ID,NAME) <span style="color: #0000ff;">values</span> (<span style="color: #800000; font-weight: bold;">4</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">joey</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+
+</span><span style="color: #0000ff;">Insert</span> <span style="color: #0000ff;">into</span> COURSE (ID,COURSENAME) <span style="color: #0000ff;">values</span> (<span style="color: #800000; font-weight: bold;">1</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">math</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">Insert</span> <span style="color: #0000ff;">into</span> COURSE (ID,COURSENAME) <span style="color: #0000ff;">values</span> (<span style="color: #800000; font-weight: bold;">2</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">english</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">Insert</span> <span style="color: #0000ff;">into</span> COURSE (ID,COURSENAME) <span style="color: #0000ff;">values</span> (<span style="color: #800000; font-weight: bold;">3</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">Japanese</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">Insert</span> <span style="color: #0000ff;">into</span> COURSE (ID,COURSENAME) <span style="color: #0000ff;">values</span> (<span style="color: #800000; font-weight: bold;">4</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">chinese</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+
+</span><span style="color: #0000ff;">Insert</span> <span style="color: #0000ff;">into</span> S_C (SID,CID,SCORE) <span style="color: #0000ff;">values</span> (<span style="color: #800000; font-weight: bold;">1</span>,<span style="color: #800000; font-weight: bold;">1</span>,<span style="color: #800000; font-weight: bold;">80</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">Insert</span> <span style="color: #0000ff;">into</span> S_C (SID,CID,SCORE) <span style="color: #0000ff;">values</span> (<span style="color: #800000; font-weight: bold;">1</span>,<span style="color: #800000; font-weight: bold;">2</span>,<span style="color: #800000; font-weight: bold;">90</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">Insert</span> <span style="color: #0000ff;">into</span> S_C (SID,CID,SCORE) <span style="color: #0000ff;">values</span> (<span style="color: #800000; font-weight: bold;">2</span>,<span style="color: #800000; font-weight: bold;">4</span>,<span style="color: #800000; font-weight: bold;">100</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">Insert</span> <span style="color: #0000ff;">into</span> S_C (SID,CID,SCORE) <span style="color: #0000ff;">values</span> (<span style="color: #800000; font-weight: bold;">4</span>,<span style="color: #800000; font-weight: bold;">4</span>,<span style="color: #800000; font-weight: bold;">90</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">Insert</span> <span style="color: #0000ff;">into</span> S_C (SID,CID,SCORE) <span style="color: #0000ff;">values</span> (<span style="color: #800000; font-weight: bold;">4</span>,<span style="color: #800000; font-weight: bold;">1</span>,<span style="color: #800000; font-weight: bold;">100</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">Insert</span> <span style="color: #0000ff;">into</span> S_C (SID,CID,SCORE) <span style="color: #0000ff;">values</span> (<span style="color: #800000; font-weight: bold;">4</span>,<span style="color: #800000; font-weight: bold;">3</span>,<span style="color: #800000; font-weight: bold;">80</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">Insert</span> <span style="color: #0000ff;">into</span> S_C (SID,CID,SCORE) <span style="color: #0000ff;">values</span> (<span style="color: #800000; font-weight: bold;">4</span>,<span style="color: #800000; font-weight: bold;">2</span>,<span style="color: #800000; font-weight: bold;">80</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">Insert</span> <span style="color: #0000ff;">into</span> S_C (SID,CID,SCORE) <span style="color: #0000ff;">values</span> (<span style="color: #800000; font-weight: bold;">2</span>,<span style="color: #800000; font-weight: bold;">1</span>,<span style="color: #800000; font-weight: bold;">90</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">Insert</span> <span style="color: #0000ff;">into</span> S_C (SID,CID,SCORE) <span style="color: #0000ff;">values</span> (<span style="color: #800000; font-weight: bold;">2</span>,<span style="color: #800000; font-weight: bold;">4</span>,<span style="color: #800000; font-weight: bold;">100</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">Insert</span> <span style="color: #0000ff;">into</span> S_C (SID,CID,SCORE) <span style="color: #0000ff;">values</span> (<span style="color: #800000; font-weight: bold;">3</span>,<span style="color: #800000; font-weight: bold;">1</span>,<span style="color: #800000; font-weight: bold;">60</span>);</pre>
+</div>
+<p>&nbsp;</p>
+<p>3.查询学生选课情况</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">with</span> vt <span style="color: #0000ff;">as</span><span style="color: #000000;"> 
+(</span><span style="color: #0000ff;">select</span> s.id,s.name,c.coursename,sc.score <span style="color: #0000ff;">from</span> stu s, course c, s_c sc <span style="color: #0000ff;">where</span> s.id<span style="color: #808080;">=</span>sc.sid <span style="color: #808080;">and</span> c.id<span style="color: #808080;">=</span><span style="color: #000000;">sc.cid)
+</span><span style="color: #0000ff;">select</span> <span style="color: #808080;">*</span> <span style="color: #0000ff;">from</span> vt <span style="color: #0000ff;">order</span> <span style="color: #0000ff;">by</span> id;</pre>
+</div>
+<p>结果：</p>
+<p><img src="http://images.cnitblog.com/i/617995/201404/301515564701358.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1 id="lib" class="wish_h1">案例2--图书馆借阅</h1>
+<p>1.创建表： 图书（book），读者（reader），借阅（borrow）</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">--</span><span style="color: #008080;">创建表 book</span>
+<span style="color: #0000ff;">create</span> <span style="color: #0000ff;">table</span><span style="color: #000000;"> book(
+  bookId  </span><span style="color: #0000ff;">varchar2</span>(<span style="color: #800000; font-weight: bold;">30</span>),   <span style="color: #008080;">--</span><span style="color: #008080;">图书总编号</span>
+  sortid <span style="color: #0000ff;">varchar2</span>(<span style="color: #800000; font-weight: bold;">30</span>),    <span style="color: #008080;">--</span><span style="color: #008080;">分类号</span>
+  bookname <span style="color: #0000ff;">varchar2</span>(<span style="color: #800000; font-weight: bold;">100</span>), <span style="color: #008080;">--</span><span style="color: #008080;">书名</span>
+  author <span style="color: #0000ff;">varchar2</span>(<span style="color: #800000; font-weight: bold;">30</span>),    <span style="color: #008080;">--</span><span style="color: #008080;">作者</span>
+  publisher <span style="color: #0000ff;">varchar2</span>(<span style="color: #800000; font-weight: bold;">100</span>),<span style="color: #008080;">--</span><span style="color: #008080;">出版单位</span>
+  price <span style="color: #0000ff;">number</span>(<span style="color: #800000; font-weight: bold;">6</span>,<span style="color: #800000; font-weight: bold;">2</span>)       <span style="color: #008080;">--</span><span style="color: #008080;">价格</span>
+<span style="color: #000000;">  );
+  
+</span><span style="color: #008080;">--</span><span style="color: #008080;">创建表 reader  </span>
+<span style="color: #0000ff;">create</span> <span style="color: #0000ff;">table</span><span style="color: #000000;"> reader (
+  cardId </span><span style="color: #0000ff;">varchar2</span>(<span style="color: #800000; font-weight: bold;">30</span>),  <span style="color: #008080;">--</span><span style="color: #008080;">借书证号</span>
+  org <span style="color: #0000ff;">varchar2</span>(<span style="color: #800000; font-weight: bold;">100</span>),    <span style="color: #008080;">--</span><span style="color: #008080;">单位</span>
+  name <span style="color: #0000ff;">varchar2</span>(<span style="color: #800000; font-weight: bold;">100</span>),   <span style="color: #008080;">--</span><span style="color: #008080;">姓名</span>
+  gender <span style="color: #0000ff;">varchar2</span>(<span style="color: #800000; font-weight: bold;">2</span>),   <span style="color: #008080;">--</span><span style="color: #008080;">性别</span>
+  title <span style="color: #0000ff;">varchar2</span>(<span style="color: #800000; font-weight: bold;">30</span>),   <span style="color: #008080;">--</span><span style="color: #008080;">职称</span>
+  address <span style="color: #0000ff;">varchar2</span>(<span style="color: #800000; font-weight: bold;">100</span>) <span style="color: #008080;">--</span><span style="color: #008080;">地址</span>
+<span style="color: #000000;">);
+
+</span><span style="color: #008080;">--</span><span style="color: #008080;">创建表 borrow</span>
+<span style="color: #0000ff;">create</span> <span style="color: #0000ff;">table</span><span style="color: #000000;"> borrow(
+    cardId </span><span style="color: #0000ff;">varchar2</span>(<span style="color: #800000; font-weight: bold;">30</span>),  <span style="color: #008080;">--</span><span style="color: #008080;">借书证号</span>
+  bookId  <span style="color: #0000ff;">varchar2</span>(<span style="color: #800000; font-weight: bold;">30</span>),   <span style="color: #008080;">--</span><span style="color: #008080;">图书总编号</span>
+  borrowDate <span style="color: #0000ff;">varchar2</span>(<span style="color: #800000; font-weight: bold;">30</span>) <span style="color: #008080;">--</span><span style="color: #008080;">借阅时间</span>
+);</pre>
+</div>
+<p>&nbsp;</p>
+<p>2.插入数据</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;">--</span><span style="color: #008080;">插入数据-book</span>
+<span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span><span style="color: #000000;"> book (bookId,sortid,bookname,author,publisher,price) 
+</span><span style="color: #0000ff;">values</span> (<span style="color: #ff0000;">'</span><span style="color: #ff0000;">aaa</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">a1</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">gone with the wind</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">CA</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">renmin</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">103</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span><span style="color: #000000;"> book (bookId,sortid,bookname,author,publisher,price) 
+</span><span style="color: #0000ff;">values</span> (<span style="color: #ff0000;">'</span><span style="color: #ff0000;">bbb</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">a2</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">the little prince</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">CB</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">jixie</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">30</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span><span style="color: #000000;"> book (bookId,sortid,bookname,author,publisher,price) 
+</span><span style="color: #0000ff;">values</span> (<span style="color: #ff0000;">'</span><span style="color: #ff0000;">ccc</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">a3</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">the ordinary world</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">CC</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">renmin</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">130</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span><span style="color: #000000;"> book (bookId,sortid,bookname,author,publisher,price) 
+</span><span style="color: #0000ff;">values</span> (<span style="color: #ff0000;">'</span><span style="color: #ff0000;">ddd</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">a4</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">the little women</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">CA</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">dianzi</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">110</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+
+</span><span style="color: #008080;">--</span><span style="color: #008080;">插入数据-reader</span>
+<span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span><span style="color: #000000;"> reader(cardid, org, name,gender, title, address)
+</span><span style="color: #0000ff;">values</span> (<span style="color: #ff0000;">'</span><span style="color: #ff0000;">xxx</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">A</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">wish</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">1</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">student</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">bupt</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span><span style="color: #000000;"> reader(cardid, org, name,gender, title, address)
+</span><span style="color: #0000ff;">values</span> (<span style="color: #ff0000;">'</span><span style="color: #ff0000;">uuu</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">A</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">luna</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">1</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">student</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">bupt</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span><span style="color: #000000;"> reader(cardid, org, name,gender, title, address)
+</span><span style="color: #0000ff;">values</span> (<span style="color: #ff0000;">'</span><span style="color: #ff0000;">vvv</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">B</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">harry</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">1</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">student</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">bupt</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span><span style="color: #000000;"> reader(cardid, org, name,gender, title, address)
+</span><span style="color: #0000ff;">values</span> (<span style="color: #ff0000;">'</span><span style="color: #ff0000;">www</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">C</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">chander</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">professor</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">bupt</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span><span style="color: #000000;"> reader(cardid, org, name,gender, title, address)
+</span><span style="color: #0000ff;">values</span> (<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyy</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">A</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">joey</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">student</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">bupt</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span><span style="color: #000000;"> reader(cardid, org, name,gender, title, address)
+</span><span style="color: #0000ff;">values</span> (<span style="color: #ff0000;">'</span><span style="color: #ff0000;">zzz</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">B</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">richard</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">student</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">bupt</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span><span style="color: #000000;"> reader(cardid, org, name,gender, title, address)
+</span><span style="color: #0000ff;">values</span> (<span style="color: #ff0000;">'</span><span style="color: #ff0000;">OOO</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">A</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">micheal</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">student</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">bupt</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span><span style="color: #000000;"> reader(cardid, org, name,gender, title, address)
+</span><span style="color: #0000ff;">values</span> (<span style="color: #ff0000;">'</span><span style="color: #ff0000;">ppp</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">A</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">richal</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">student</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">bupt</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span><span style="color: #000000;"> reader(cardid, org, name,gender, title, address)
+</span><span style="color: #0000ff;">values</span> (<span style="color: #ff0000;">'</span><span style="color: #ff0000;">abp</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">A</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">michal</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">student</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">bupt</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span><span style="color: #000000;"> reader(cardid, org, name,gender, title, address)
+</span><span style="color: #0000ff;">values</span> (<span style="color: #ff0000;">'</span><span style="color: #ff0000;">ccp</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">A</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">mike</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">student</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">bupt</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+
+</span><span style="color: #008080;">--</span><span style="color: #008080;">插入数据-borrow</span>
+<span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span> borrow(cardid,bookid,borrowdate) <span style="color: #0000ff;">values</span>(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">xxx</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">aaa</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-4-29</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span> borrow(cardid,bookid,borrowdate) <span style="color: #0000ff;">values</span>(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">xxx</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">bbb</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-4-29</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span> borrow(cardid,bookid,borrowdate) <span style="color: #0000ff;">values</span>(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">xxx</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">ccc</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-4-28</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span> borrow(cardid,bookid,borrowdate) <span style="color: #0000ff;">values</span>(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyy</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">ccc</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-4-28</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span> borrow(cardid,bookid,borrowdate) <span style="color: #0000ff;">values</span>(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyy</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">ddd</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-4-27</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span> borrow(cardid,bookid,borrowdate) <span style="color: #0000ff;">values</span>(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyy</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">aaa</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-4-27</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span> borrow(cardid,bookid,borrowdate) <span style="color: #0000ff;">values</span>(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">zzz</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">bbb</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-4-28</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span> borrow(cardid,bookid,borrowdate) <span style="color: #0000ff;">values</span>(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">zzz</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">ddd</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-4-27</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span> borrow(cardid,bookid,borrowdate) <span style="color: #0000ff;">values</span>(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">zzz</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">aaa</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-4-27</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span> borrow(cardid,bookid,borrowdate) <span style="color: #0000ff;">values</span>(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">uuu</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">bbb</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-4-28</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span> borrow(cardid,bookid,borrowdate) <span style="color: #0000ff;">values</span>(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">uuu</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">ddd</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-4-27</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span> borrow(cardid,bookid,borrowdate) <span style="color: #0000ff;">values</span>(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">uuu</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">aaa</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-4-27</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span> borrow(cardid,bookid,borrowdate) <span style="color: #0000ff;">values</span>(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">uuu</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">ccc</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-4-26</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span> borrow(cardid,bookid,borrowdate) <span style="color: #0000ff;">values</span>(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">vvv</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">bbb</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-4-28</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span> borrow(cardid,bookid,borrowdate) <span style="color: #0000ff;">values</span>(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">vvv</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">ddd</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-4-27</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span> borrow(cardid,bookid,borrowdate) <span style="color: #0000ff;">values</span>(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">www</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">aaa</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-4-27</span><span style="color: #ff0000;">'</span><span style="color: #000000;">);
+</span><span style="color: #0000ff;">insert</span> <span style="color: #0000ff;">into</span> borrow(cardid,bookid,borrowdate) <span style="color: #0000ff;">values</span>(<span style="color: #ff0000;">'</span><span style="color: #ff0000;">www</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">ccc</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-4-26</span><span style="color: #ff0000;">'</span>);</pre>
+</div>
+<p>表信息如下：</p>
+<p>book------&gt; reader-------&gt; borrow</p>
+<p><img src="http://images.cnitblog.com/i/617995/201404/301157317673204.png" alt="" /></p>
+<p><img src="http://images.cnitblog.com/i/617995/201404/301156457678283.png" alt="" /></p>
+<p><img src="http://images.cnitblog.com/i/617995/201404/301157597835497.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>3. 查询A单位借阅图书的读者人数和人员详细信息</p>
+<p>人数：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">with</span> vt1 <span style="color: #0000ff;">as</span><span style="color: #000000;"> 
+(</span><span style="color: #0000ff;">select</span> cardid <span style="color: #0000ff;">from</span> reader <span style="color: #0000ff;">where</span> reader.org<span style="color: #808080;">=</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">A</span><span style="color: #ff0000;">'</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">select</span> <span style="color: #ff00ff;">count</span>(<span style="color: #800000; font-weight: bold;">1</span>) <span style="color: #0000ff;">from</span> vt1 <span style="color: #0000ff;">where</span> <span style="color: #808080;">exists</span> (<span style="color: #0000ff;">select</span> cardid <span style="color: #0000ff;">from</span> borrow <span style="color: #0000ff;">where</span> borrow.cardid<span style="color: #808080;">=</span>vt1.cardid);</pre>
+</div>
+<p><img src="http://images.cnitblog.com/i/617995/201404/301155532207230.png" alt="" /></p>
+<p>详细信息：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">with</span> vt1 <span style="color: #0000ff;">as</span><span style="color: #000000;"> 
+(</span><span style="color: #0000ff;">select</span> cardid,name,org <span style="color: #0000ff;">from</span> reader <span style="color: #0000ff;">where</span> reader.org<span style="color: #808080;">=</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">A</span><span style="color: #ff0000;">'</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">select</span> cardid,name,org <span style="color: #0000ff;">from</span> vt1 <span style="color: #0000ff;">where</span> <span style="color: #808080;">exists</span> (<span style="color: #0000ff;">select</span> cardid <span style="color: #0000ff;">from</span> borrow <span style="color: #0000ff;">where</span> borrow.cardid<span style="color: #808080;">=</span>vt1.cardid);</pre>
+</div>
+<p><img src="http://images.cnitblog.com/i/617995/201404/301155095955469.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>4.查询借书证号尾字符为'p'的读者</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">select</span> cardid, name, org <span style="color: #0000ff;">from</span> reader <span style="color: #0000ff;">where</span> cardid <span style="color: #808080;">like</span> <span style="color: #ff0000;">'</span><span style="color: #ff0000;">%p</span><span style="color: #ff0000;">'</span>;</pre>
+</div>
+<p><img src="http://images.cnitblog.com/i/617995/201404/301200576581872.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>5.&nbsp;查询名字以m开头的女性读者，&lsquo;1&rsquo;显示为女，&lsquo;2&rsquo;显示为男</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">select</span><span style="color: #000000;"> cardid, name, org, 
+</span><span style="color: #ff00ff;">case</span> <span style="color: #0000ff;">when</span> gender<span style="color: #808080;">=</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">1</span><span style="color: #ff0000;">'</span> <span style="color: #0000ff;">then</span> <span style="color: #ff0000;">'</span><span style="color: #ff0000;">女</span><span style="color: #ff0000;">'</span> <span style="color: #0000ff;">when</span> gender<span style="color: #808080;">=</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2</span><span style="color: #ff0000;">'</span> <span style="color: #0000ff;">then</span> <span style="color: #ff0000;">'</span><span style="color: #ff0000;">男</span><span style="color: #ff0000;">'</span> <span style="color: #0000ff;">else</span> <span style="color: #ff0000;">'</span><span style="color: #ff0000;">其他</span><span style="color: #ff0000;">'</span> <span style="color: #0000ff;">end</span><span style="color: #000000;"> gender
+</span><span style="color: #0000ff;">from</span> reader <span style="color: #0000ff;">where</span> name <span style="color: #808080;">like</span> <span style="color: #ff0000;">'</span><span style="color: #ff0000;">m%</span><span style="color: #ff0000;">'</span>;</pre>
+</div>
+<p><img src="http://images.cnitblog.com/i/617995/201404/301205549703335.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>6.&nbsp;2014年2-4月借过书的读者</p>
+<p>1)查询满足条件的读者（仅包含cardid）--未去重</p>
+<p>　　方式一：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">select</span> cardid, borrowdate <span style="color: #0000ff;">from</span> borrow <span style="color: #0000ff;">where</span> to_char(to_date(borrowdate,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd</span><span style="color: #ff0000;">'</span>),<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy</span><span style="color: #ff0000;">'</span>)<span style="color: #808080;">=</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014</span><span style="color: #ff0000;">'</span> 
+<span style="color: #808080;">and</span> to_char(to_date(borrowdate,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd</span><span style="color: #ff0000;">'</span>),<span style="color: #ff0000;">'</span><span style="color: #ff0000;">mm</span><span style="color: #ff0000;">'</span>)<span style="color: #808080;">&gt;=</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">02</span><span style="color: #ff0000;">'</span>
+<span style="color: #808080;">and</span> to_char(to_date(borrowdate,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd</span><span style="color: #ff0000;">'</span>),<span style="color: #ff0000;">'</span><span style="color: #ff0000;">mm</span><span style="color: #ff0000;">'</span>)<span style="color: #808080;">&lt;=</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">04</span><span style="color: #ff0000;">'</span>;</pre>
+</div>
+<p>　　方式二：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">select</span> cardid, borrowdate <span style="color: #0000ff;">from</span> borrow <span style="color: #0000ff;">where</span> to_char(to_date(borrowdate,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd</span><span style="color: #ff0000;">'</span>),<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy</span><span style="color: #ff0000;">'</span>)<span style="color: #808080;">=</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014</span><span style="color: #ff0000;">'</span>  <span style="color: #008080;">--</span><span style="color: #008080;">查询</span>
+<span style="color: #808080;">and</span> to_char(to_date(borrowdate,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd</span><span style="color: #ff0000;">'</span>),<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm</span><span style="color: #ff0000;">'</span>)<span style="color: #808080;">&gt;=</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-02</span><span style="color: #ff0000;">'</span>
+<span style="color: #808080;">and</span> to_char(to_date(borrowdate,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd</span><span style="color: #ff0000;">'</span>),<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm</span><span style="color: #ff0000;">'</span>)<span style="color: #808080;">&lt;=</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-04</span><span style="color: #ff0000;">'</span>;</pre>
+</div>
+<p>　　方式三：</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">select</span> cardid, borrowdate <span style="color: #0000ff;">from</span> borrow <span style="color: #0000ff;">where</span> to_date(borrowdate,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span>)  <span style="color: #808080;">between</span><span style="color: #000000;"> 
+to_date(</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-02-01 00:00:00</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span>) <span style="color: #808080;">and</span><span style="color: #000000;"> 
+to_date(</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-05-01 00:00:00</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span>); </pre>
+</div>
+<p>&nbsp;</p>
+<p><img src="http://images.cnitblog.com/i/617995/201404/301454349236704.png" alt="" /></p>
+<p>2) 查询+去重</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">select</span> <span style="color: #0000ff;">distinct</span> cardid <span style="color: #0000ff;">from</span> borrow <span style="color: #0000ff;">where</span> to_char(to_date(borrowdate,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd</span><span style="color: #ff0000;">'</span>),<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy</span><span style="color: #ff0000;">'</span>)<span style="color: #808080;">=</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014</span><span style="color: #ff0000;">'</span>  <span style="color: #008080;">--</span><span style="color: #008080;">查询+去重</span>
+<span style="color: #808080;">and</span> to_char(to_date(borrowdate,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd</span><span style="color: #ff0000;">'</span>),<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm</span><span style="color: #ff0000;">'</span>)<span style="color: #808080;">&gt;=</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-02</span><span style="color: #ff0000;">'</span>
+<span style="color: #808080;">and</span> to_char(to_date(borrowdate,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd</span><span style="color: #ff0000;">'</span>),<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm</span><span style="color: #ff0000;">'</span>)<span style="color: #808080;">&lt;=</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-04</span><span style="color: #ff0000;">'</span>;</pre>
+</div>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">select</span> <span style="color: #0000ff;">distinct</span> cardid <span style="color: #0000ff;">from</span> borrow <span style="color: #0000ff;">where</span> to_date(borrowdate,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span>)  <span style="color: #808080;">between</span><span style="color: #000000;"> 
+to_date(</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-02-01 00:00:00</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span>) <span style="color: #808080;">and</span><span style="color: #000000;"> 
+to_date(</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-05-01 00:00:00</span><span style="color: #ff0000;">'</span>,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd hh24:mi:ss</span><span style="color: #ff0000;">'</span>); </pre>
+</div>
+<p><img src="http://images.cnitblog.com/i/617995/201404/301455218454539.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>3）查询+去重+读者姓名等信息</p>
+<div class="cnblogs_code">
+<pre><span style="color: #0000ff;">with</span> vt1 <span style="color: #0000ff;">as</span><span style="color: #000000;"> 
+(</span><span style="color: #0000ff;">select</span> <span style="color: #0000ff;">distinct</span> cardid <span style="color: #0000ff;">from</span> borrow <span style="color: #0000ff;">where</span> to_char(to_date(borrowdate,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd</span><span style="color: #ff0000;">'</span>),<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy</span><span style="color: #ff0000;">'</span>)<span style="color: #808080;">=</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014</span><span style="color: #ff0000;">'</span> 
+<span style="color: #808080;">and</span> to_char(to_date(borrowdate,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd</span><span style="color: #ff0000;">'</span>),<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm</span><span style="color: #ff0000;">'</span>)<span style="color: #808080;">&gt;=</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-02</span><span style="color: #ff0000;">'</span>
+<span style="color: #808080;">and</span> to_char(to_date(borrowdate,<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm-dd</span><span style="color: #ff0000;">'</span>),<span style="color: #ff0000;">'</span><span style="color: #ff0000;">yyyy-mm</span><span style="color: #ff0000;">'</span>)<span style="color: #808080;">&lt;=</span><span style="color: #ff0000;">'</span><span style="color: #ff0000;">2014-04</span><span style="color: #ff0000;">'</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">select</span> cardid, name,org <span style="color: #0000ff;">from</span> reader <span style="color: #0000ff;">where</span> <span style="color: #808080;">exists</span> (<span style="color: #0000ff;">select</span> cardid <span style="color: #0000ff;">from</span> vt1 <span style="color: #0000ff;">where</span> vt1.cardid<span style="color: #808080;">=</span>reader.cardid);</pre>
+</div>
+<p><img src="http://images.cnitblog.com/i/617995/201404/301456221588899.png" alt="" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2014-05-02 15:43</span> <a href='http://www.cnblogs.com/wishyouhappy/'>wishyouhappy</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="http://i.cnblogs.com/EditPosts.aspx?postid=3700683" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(3700683);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,isLogined=true,cb_blogId=181558,cb_entryId=3700683,cb_blogApp=currentBlogApp,cb_blogUserGuid='13f2c27c-17b6-e311-8d02-90b11c0b17d6',cb_entryCreatedDate='2014/5/2 15:43:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+<a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.cnblogs.com/" target="_blank" title="程序员的网上家园">博客园首页</a><a href="http://q.cnblogs.com/" target="_blank" title="程序员问答社区">博问</a><a href="http://news.cnblogs.com/" target="_blank" title="IT新闻">新闻</a><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a><a href="http://job.cnblogs.com/" target="_blank">程序员招聘</a><a href="http://kb.cnblogs.com/" target="_blank">知识库</a></div>
+<div id="ad_under_post_holder"></div>
+<script type="text/javascript">
+var enableGoogleAd = true;
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+fixPostBodyFormat();
+loadAdUnderPost();
+</script>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+loadBlogSignature();
+LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+</script>
+<script type="text/javascript">
+    $.ajax({ url: 'http://counter.cnblogs.com/blog/post/' + cb_entryId, type: 'get', dataType: 'script', cache: true });
+</script>
+</div>
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<DIV id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</DIV>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2014 wishyouhappy
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+</body>
+</html>

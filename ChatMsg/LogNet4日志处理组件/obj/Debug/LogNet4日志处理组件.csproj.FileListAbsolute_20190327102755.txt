@@ -1,0 +1,6 @@
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\LogNet4日志处理组件\bin\LogNet4日志处理组件.dll
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\LogNet4日志处理组件\bin\LogNet4日志处理组件.pdb
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\LogNet4日志处理组件\bin\log4net.dll
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\LogNet4日志处理组件\obj\Debug\LogNet4日志处理组件.csprojResolveAssemblyReference.cache
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\LogNet4日志处理组件\obj\Debug\LogNet4日志处理组件.dll
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\LogNet4日志处理组件\obj\Debug\LogNet4日志处理组件.pdb

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CrmChat14Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="CrmChat14ModelStoreContainer">
+    <EntitySet Name="ChatMsg" EntityType="CrmChat14Model.Store.ChatMsg" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RouteMsgTable" EntityType="CrmChat14Model.Store.RouteMsgTable" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="ChatMsg">
+    <Key>
+      <PropertyRef Name="cid" />
+    </Key>
+    <Property Name="cid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ToUserId" Type="int" Nullable="false" />
+    <Property Name="ToRealName" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="FromUserId" Type="int" />
+    <Property Name="FromRealName" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="MessageBody" Type="nvarchar(max)" />
+    <Property Name="SendTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RouteMsgTable">
+    <Key>
+      <PropertyRef Name="rid" />
+    </Key>
+    <Property Name="rid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TableName" Type="nvarchar" MaxLength="12" />
+    <Property Name="BeginTime" Type="datetime" />
+    <Property Name="EndTime" Type="datetime" />
+  </EntityType>
+  <Function Name="Usp_CreateTable15" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TableName" Type="nvarchar" Mode="In" />
+    <Parameter Name="begintime" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="Usp_GetHistroryMsg15" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+    <Parameter Name="begintime" Type="datetime" Mode="In" />
+    <Parameter Name="endtime" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="Usp_GetTotalCount15" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tablename" Type="nvarchar" Mode="In" />
+  </Function>
+</Schema>

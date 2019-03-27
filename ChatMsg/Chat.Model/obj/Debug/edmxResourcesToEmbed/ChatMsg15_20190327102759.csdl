@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CrmChat14Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="CrmChat14Entities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="ChatMsg" EntityType="CrmChat14Model.ChatMsg" />
+    <EntitySet Name="RouteMsgTable" EntityType="CrmChat14Model.RouteMsgTable" />
+    <FunctionImport Name="Usp_GetTotalCount15" ReturnType="Collection(Int32)">
+      <Parameter Name="tablename" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Usp_CreateTable15">
+      <Parameter Name="TableName" Mode="In" Type="String" />
+      <Parameter Name="begintime" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="Usp_GetHistroryMsg15" ReturnType="Collection(CrmChat14Model.Usp_GetHistroryMsg15_Result)">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+      <Parameter Name="begintime" Mode="In" Type="DateTime" />
+      <Parameter Name="endtime" Mode="In" Type="DateTime" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="ChatMsg">
+    <Key>
+      <PropertyRef Name="cid" />
+    </Key>
+    <Property Name="cid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ToUserId" Type="Int32" Nullable="false" />
+    <Property Name="ToRealName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="FromUserId" Type="Int32" />
+    <Property Name="FromRealName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="MessageBody" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="SendTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="RouteMsgTable">
+    <Key>
+      <PropertyRef Name="rid" />
+    </Key>
+    <Property Name="rid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="TableName" Type="String" MaxLength="12" Unicode="true" FixedLength="false" />
+    <Property Name="BeginTime" Type="DateTime" Precision="3" />
+    <Property Name="EndTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <ComplexType Name="Usp_GetHistroryMsg15_Result">
+    <Property Type="Int32" Name="cid" Nullable="false" />
+    <Property Type="Int32" Name="ToUserId" Nullable="false" />
+    <Property Type="String" Name="ToRealName" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="FromUserId" Nullable="true" />
+    <Property Type="String" Name="FromRealName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="MessageBody" Nullable="true" />
+    <Property Type="DateTime" Name="SendTime" Nullable="false" Precision="23" />
+  </ComplexType>
+</Schema>

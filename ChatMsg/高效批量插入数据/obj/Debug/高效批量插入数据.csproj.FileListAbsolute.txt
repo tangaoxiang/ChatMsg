@@ -1,0 +1,9 @@
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\高效批量插入数据\bin\Debug\高效批量插入数据.exe.config
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\高效批量插入数据\bin\Debug\高效批量插入数据.exe
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\高效批量插入数据\bin\Debug\高效批量插入数据.pdb
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\高效批量插入数据\obj\Debug\高效批量插入数据.csprojResolveAssemblyReference.cache
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\高效批量插入数据\obj\Debug\高效批量插入数据.Form1.resources
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\高效批量插入数据\obj\Debug\高效批量插入数据.Properties.Resources.resources
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\高效批量插入数据\obj\Debug\高效批量插入数据.csproj.GenerateResource.Cache
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\高效批量插入数据\obj\Debug\高效批量插入数据.exe
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\高效批量插入数据\obj\Debug\高效批量插入数据.pdb

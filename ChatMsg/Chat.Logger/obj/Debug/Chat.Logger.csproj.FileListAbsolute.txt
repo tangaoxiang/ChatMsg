@@ -1,0 +1,6 @@
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\Chat.Logger\bin\Debug\Chat.Logger.dll
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\Chat.Logger\bin\Debug\Chat.Logger.pdb
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\Chat.Logger\bin\Debug\log4net.dll
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\Chat.Logger\obj\Debug\Chat.Logger.csprojResolveAssemblyReference.cache
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\Chat.Logger\obj\Debug\Chat.Logger.dll
+F:\上课视频\15期班\2014-10-5 MVC大项目第11天 在线聊天分表实现历史记录\源码\ChatMsg\Chat.Logger\obj\Debug\Chat.Logger.pdb

@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CrmChat14Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="CrmChat14ModelStoreContainer">
+          <EntitySet Name="ChatMsg" EntityType="CrmChat14Model.Store.ChatMsg" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RouteMsgTable" EntityType="CrmChat14Model.Store.RouteMsgTable" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="ChatMsg">
+          <Key>
+            <PropertyRef Name="cid" />
+          </Key>
+          <Property Name="cid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ToUserId" Type="int" Nullable="false" />
+          <Property Name="ToRealName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="FromUserId" Type="int" />
+          <Property Name="FromRealName" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="MessageBody" Type="nvarchar(max)" />
+          <Property Name="SendTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RouteMsgTable">
+          <Key>
+            <PropertyRef Name="rid" />
+          </Key>
+          <Property Name="rid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="12" />
+          <Property Name="BeginTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+        </EntityType>
+        <Function Name="Usp_CreateTable15" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TableName" Type="nvarchar" Mode="In" />
+          <Parameter Name="begintime" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="Usp_GetHistroryMsg15" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="int" Mode="In" />
+          <Parameter Name="begintime" Type="datetime" Mode="In" />
+          <Parameter Name="endtime" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="Usp_GetTotalCount15" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tablename" Type="nvarchar" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CrmChat14Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CrmChat14Entities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="ChatMsg" EntityType="CrmChat14Model.ChatMsg" />
+          <EntitySet Name="RouteMsgTable" EntityType="CrmChat14Model.RouteMsgTable" />
+          <FunctionImport Name="Usp_GetTotalCount15" ReturnType="Collection(Int32)">
+          <Parameter Name="tablename" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Usp_CreateTable15">
+            <Parameter Name="TableName" Mode="In" Type="String" />
+            <Parameter Name="begintime" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Usp_GetHistroryMsg15" ReturnType="Collection(CrmChat14Model.Usp_GetHistroryMsg15_Result)">
+            <Parameter Name="userid" Mode="In" Type="Int32" />
+            <Parameter Name="begintime" Mode="In" Type="DateTime" />
+            <Parameter Name="endtime" Mode="In" Type="DateTime" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="ChatMsg">
+          <Key>
+            <PropertyRef Name="cid" />
+          </Key>
+          <Property Name="cid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ToUserId" Type="Int32" Nullable="false" />
+          <Property Name="ToRealName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="FromUserId" Type="Int32" />
+          <Property Name="FromRealName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="MessageBody" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="SendTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="RouteMsgTable">
+          <Key>
+            <PropertyRef Name="rid" />
+          </Key>
+          <Property Name="rid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TableName" Type="String" MaxLength="12" Unicode="true" FixedLength="false" />
+          <Property Name="BeginTime" Type="DateTime" Precision="3" />
+          <Property Name="EndTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <ComplexType Name="Usp_GetHistroryMsg15_Result">
+          <Property Type="Int32" Name="cid" Nullable="false" />
+          <Property Type="Int32" Name="ToUserId" Nullable="false" />
+          <Property Type="String" Name="ToRealName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="FromUserId" Nullable="true" />
+          <Property Type="String" Name="FromRealName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="MessageBody" Nullable="true" />
+          <Property Type="DateTime" Name="SendTime" Nullable="false" Precision="23" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CrmChat14ModelStoreContainer" CdmEntityContainer="CrmChat14Entities">
+          <EntitySetMapping Name="ChatMsg">
+            <EntityTypeMapping TypeName="CrmChat14Model.ChatMsg">
+              <MappingFragment StoreEntitySet="ChatMsg">
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="ToUserId" ColumnName="ToUserId" />
+                <ScalarProperty Name="ToRealName" ColumnName="ToRealName" />
+                <ScalarProperty Name="FromUserId" ColumnName="FromUserId" />
+                <ScalarProperty Name="FromRealName" ColumnName="FromRealName" />
+                <ScalarProperty Name="MessageBody" ColumnName="MessageBody" />
+                <ScalarProperty Name="SendTime" ColumnName="SendTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RouteMsgTable">
+            <EntityTypeMapping TypeName="CrmChat14Model.RouteMsgTable">
+              <MappingFragment StoreEntitySet="RouteMsgTable">
+                <ScalarProperty Name="rid" ColumnName="rid" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="BeginTime" ColumnName="BeginTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Usp_GetTotalCount15" FunctionName="CrmChat14Model.Store.Usp_GetTotalCount15" />
+          <FunctionImportMapping FunctionImportName="Usp_CreateTable15" FunctionName="CrmChat14Model.Store.Usp_CreateTable15" />
+          <FunctionImportMapping FunctionImportName="Usp_GetHistroryMsg15" FunctionName="CrmChat14Model.Store.Usp_GetHistroryMsg15">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CrmChat14Model.Usp_GetHistroryMsg15_Result">
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="ToUserId" ColumnName="ToUserId" />
+                <ScalarProperty Name="ToRealName" ColumnName="ToRealName" />
+                <ScalarProperty Name="FromUserId" ColumnName="FromUserId" />
+                <ScalarProperty Name="FromRealName" ColumnName="FromRealName" />
+                <ScalarProperty Name="MessageBody" ColumnName="MessageBody" />
+                <ScalarProperty Name="SendTime" ColumnName="SendTime" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
